@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { TaskListComponent } from './pages/Task/task-list/task-list.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./pages/pages.module').then((m) => m.PagesModule),
+      },
+      {
+        path: 'Task',
+        component: TaskListComponent,
       },
       {
         path: 'ui-components',
