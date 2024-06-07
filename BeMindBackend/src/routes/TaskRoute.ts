@@ -1,20 +1,25 @@
 import express from "express";
-import { TaskController } from "../controller/TaskController";
+import {
+  createTask,
+  deleteTask,
+  getAllTask,
+  getByIdTask,
+  updateTask,
+} from "../controller/TaskController";
 
 const router = express.Router();
-const task = new TaskController();
 
 router
-  .get("/Task", task.getAllTask)
-  .get("/Task/:id", task.getByIdTask)
+  .get("/Task", getAllTask)
+  .get("/Task/:id", getByIdTask)
   .post(
     "/Task/:name/:img/:area/:startDate/:endDate/:comentary/:studentCode",
-    task.createTask
+    createTask
   )
   .put(
     "/Task/:id/:name/:img/:area/:startDate/:endDate/:comentary/:studentCode",
-    task.updateTask
+    updateTask
   )
-  .delete("/Task/:id", task.deleteTask);
+  .delete("/Task/:id", deleteTask);
 
 export default router;
