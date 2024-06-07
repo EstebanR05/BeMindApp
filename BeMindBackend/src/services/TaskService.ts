@@ -1,26 +1,30 @@
+import { conexion } from "../conexion_bd";
+
 export class TaskService {
   constructor() {}
 
-  getAllTaskService() {}
-
-  getByIdTaskService() {}
-
-  CreateTaskService() {}
-
-  UpdateTaskService() {}
-
-  public deleteTaskService(id: number) {
-    try {
-      if (id) {
-        console.log("hey");
-      }
-    } catch (error) {
-      this.handleError(null, error, "error in the server");
-    }
+  async getAllTaskService() {
+    const [resp] = await conexion.query("SELECT * FROM task");
+    return resp;
   }
 
-  private handleError(res: any, error: any, message: any) {
-    console.error(message, error);
-    res.status(500).json({ error: message });
+  async getByIdTaskService(id: number) {
+    const [resp] = await conexion.query("SELECT * FROM task WHERE id_user = ?", [id]);
+    return resp;
+  }
+
+  async createTaskService(task: any) {
+    const [resp] = await conexion.query("INSERT INTO task SET ?", [task]);
+    return resp;
+  }
+
+  async updateTaskService(id: number, task: any) {
+    const [resp] = await conexion.query("UPDATE task SET ? WHERE id = ?", [task, id]);
+    return resp;
+  }
+
+  async deleteTaskService(id: number) {
+    const [resp] = await conexion.query("DELETE FROM task WHERE id = ?", [id]);
+    return resp;
   }
 }

@@ -1,43 +1,58 @@
+import { Request, Response } from "express";
 import { TaskService } from "../services/TaskService";
 
 export class TaskController {
   private taskService = new TaskService();
-  
+
   constructor() {}
 
-  getAllTask(_req: any, res: any) {
-    const resp: any = this.taskService.getAllTaskService();
-
-    if (res) {
-      console.log("hey word", resp);
+  async getAllTask(_req: Request, res: Response) {
+    try {
+      const tasks = await this.taskService.getAllTaskService();
+      res.json(tasks || {});
+    } catch (error) {
+      res.status(500).json({ message: error });
     }
-
-    res.json({
-      message: "Hello World",
-    });
   }
 
-  getByIdTask(_req: any, res: any) {
-    res.json({
-      message: "Hello World",
-    });
+  async getByIdTask(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id, 10);
+      const task = await this.taskService.getByIdTaskService(id);
+      res.json(task || {});
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
   }
 
-  CreateTask(_req: any, res: any) {
-    res.json({
-      message: "Hello World",
-    });
+  async createTask(req: Request, res: Response) {
+    try {
+      const task = req.body;
+      const result = await this.taskService.createTaskService(task);
+      res.status(201).json(result);
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
   }
 
-  UpdateTask(_req: any, res: any) {
-    res.json({
-      message: "Hello World",
-    });
+  async updateTask(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id, 10);
+      const task = req.body;
+      const result = await this.taskService.updateTaskService(id, task);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
   }
 
-  deleteTask(_req: any, res: any) {
-    res.json({
-      message: "Hello World",
-    });
+  async deleteTask(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id, 10);
+      await this.taskService.deleteTaskService(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
   }
 }
