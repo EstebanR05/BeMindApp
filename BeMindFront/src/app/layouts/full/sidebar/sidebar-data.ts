@@ -10,6 +10,11 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
+    displayName: 'Tareas',
+    iconName: 'layout-Task',
+    route: '/Task',
+  },
+  {
     navCap: 'Ui Components',
   },
   {
