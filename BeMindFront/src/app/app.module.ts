@@ -45,6 +45,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
     NgScrollbarModule,
+    HttpClientModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

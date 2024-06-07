@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/shared/services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -7,8 +8,22 @@ import { Component } from '@angular/core';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
 
-  public list: any[] = [{ img: "perritos.png", name: "infografia", materia: "sistemas de informacion", startDate: "01/01/2023", endDate: "01/02/2023", comentary: "se debe entregar lo mas pronto"}];
+  public list: any;
 
+  constructor(private taskService: TaskService) { }
+
+  ngOnInit(): void {
+    this.getAll();
+  }
+
+  async getAll(): Promise<void> {
+    try {
+      const resp = await this.taskService.getAll();
+      this.list = resp.reverse();
+    } catch (error) {
+      console.log('Error in the server: ', error);
+    }
+  }
 }
