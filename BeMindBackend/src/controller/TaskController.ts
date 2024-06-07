@@ -1,8 +1,9 @@
 import { TaskService } from "../services/TaskService";
 
 export class TaskController {
+  private taskService = new TaskService();
   
-  constructor(private taskService: TaskService) {}
+  constructor() {}
 
   getAllTask(_req: any, res: any) {
     const resp: any = this.taskService.getAllTaskService();
