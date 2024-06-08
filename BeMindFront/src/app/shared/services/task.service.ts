@@ -20,7 +20,12 @@ export class TaskService {
     return this.http.get<task>(url).toPromise();
   }
 
-  public create(body: task) {}
+  public create(body: task): Promise<void> {
+    const url: string = `${this.generalUrl}/Task/`
+    return this.http.post<void>(url, body).toPromise();
+  }
 
-  public update(id: number, body: task) {}
+  public update(id: number, body: task) {
+
+  }
 }
