@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { TaskListComponent } from './pages/Task/task-list/task-list.component';
+import { TaskManagerComponent } from './pages/Task/task-manager/task-manager.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'Task',
         component: TaskListComponent,
+      },
+      {
+        path: 'Edit',
+        component: TaskManagerComponent,
       },
       {
         path: 'ui-components',
