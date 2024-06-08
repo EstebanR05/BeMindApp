@@ -17,6 +17,7 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
     NgApexchartsModule,
     RouterModule.forChild(PagesRoutes),
     TablerIconsModule.pick(TablerIcons),
+    CommonModule
   ],
   exports: [TablerIconsModule],
 })

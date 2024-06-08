@@ -4,7 +4,7 @@ export interface task {
     img: string,
     area: string,
     code: number,
-    comentary: string,
+    Comentary: string,
     startDate: Date,
     endDate: Date,
     id_user: number
