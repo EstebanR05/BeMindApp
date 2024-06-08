@@ -55,5 +55,11 @@ export class TaskManagerComponent implements OnInit {
     });
   }
 
-  async submit(): Promise<void> {}
+  async submit(): Promise<void> {
+    if (this.id) {
+      await this.taskService.update(this.id, this.form.value);
+    } else {
+      await this.taskService.create(this.form.value);
+    }
+  }
 }

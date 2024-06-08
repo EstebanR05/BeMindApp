@@ -3,15 +3,12 @@ import { Injectable } from '@angular/core';
 import { task } from '../interface/task.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
+  private generalUrl: string = 'http://localhost:3000/api';
 
-  private generalUrl: string = "http://localhost:3000/api";
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   public getAll(): Promise<any> {
     const url: string = `${this.generalUrl}/Task`;
@@ -22,4 +19,8 @@ export class TaskService {
     const url: string = `${this.generalUrl}/Task/${id}`;
     return this.http.get<task>(url).toPromise();
   }
+
+  public create(body: task) {}
+
+  public update(id: number, body: task) {}
 }
