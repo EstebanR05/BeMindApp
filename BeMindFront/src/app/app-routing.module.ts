@@ -22,15 +22,8 @@ const routes: Routes = [
       },
       {
         path: 'Task',
-        component: TaskListComponent,
-      },
-      {
-        path: 'create',
-        component: TaskManagerComponent,
-      },
-      {
-        path: 'update/:id',
-        component: TaskManagerComponent,
+        loadChildren: () =>
+          import('./pages/Task/task.module').then((m) => m.TaskModule),
       },
       {
         path: 'ui-components',

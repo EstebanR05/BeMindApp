@@ -9,7 +9,7 @@
       <div class="d-flex flex-row-reverse bd-highlight">
         <div class="btn-group">
           <button
-            routerLink="/create"
+            (click)="this.route.navigate(['/Task/create'])"
             class="btn btn-sm ml-2 btn-primary"
             type="button"
           >
@@ -46,8 +46,21 @@
               <td>{{ item.endDate }}</td>
               <td>{{ item.Comentary }}</td>
               <td>
-                <button type="button" class="btn btn-primary"></button> |
-                eliminar
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary"
+                  (click)="this.route.navigate(['/Task/update/', item.id])"
+                >
+                  Editar
+                </button>
+                |
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="this.delete(item.id)"
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
             }

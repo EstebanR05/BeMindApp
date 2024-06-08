@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { task } from 'src/app/shared/interface/task.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
 
@@ -12,7 +13,7 @@ import { TaskService } from 'src/app/shared/services/task.service';
 export class TaskListComponent implements OnInit {
   public list: task[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, public route: Router) {}
 
   ngOnInit(): void {
     this.getAll();
@@ -26,4 +27,9 @@ export class TaskListComponent implements OnInit {
       console.log('Error in the server: ', error);
     }
   }
+
+  delete(id: number){
+
+  }
+
 }
