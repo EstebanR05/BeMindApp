@@ -18,7 +18,7 @@ export class TaskService {
     return this.http.get<task[]>(url).toPromise();
   }
 
-  public getById(id: number, id_user: number): Promise<any> {
+  public getById(id: number): Promise<any> {
     const url: string = `${this.generalUrl}/Task/${id}`;
     return this.http.get<task>(url).toPromise();
   }

@@ -25,7 +25,11 @@ const routes: Routes = [
         component: TaskListComponent,
       },
       {
-        path: 'Edit',
+        path: 'create',
+        component: TaskManagerComponent,
+      },
+      {
+        path: 'update/:id',
         component: TaskManagerComponent,
       },
       {
