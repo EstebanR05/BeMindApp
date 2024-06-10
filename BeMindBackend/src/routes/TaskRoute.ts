@@ -13,7 +13,7 @@ router
   .get("/Task", getAllTask)
   .get("/Task/:id", getByIdTask)
   .post(
-    "/Task/:name/:img/:area/:startDate/:endDate/:comentary/:studentCode",
+    "/Task",
     createTask
   )
   .put(

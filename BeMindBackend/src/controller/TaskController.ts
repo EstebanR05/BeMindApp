@@ -6,6 +6,7 @@ import {
   getByIdTaskService,
   updateTaskService,
 } from "../services/TaskService";
+import { task } from "../interface/task.interface";
 
 export async function getAllTask(_req: Request, res: Response) {
   try {
@@ -39,7 +40,7 @@ export async function createTask(req: Request, res: Response) {
 export async function updateTask(req: Request, res: Response) {
   try {
     const id = parseInt(req.params.id, 10);
-    const task = req.body;
+    const task: task = req.body;
     const result = await updateTaskService(id, task);
     res.json(result);
   } catch (error) {

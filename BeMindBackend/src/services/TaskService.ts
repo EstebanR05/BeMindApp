@@ -1,4 +1,5 @@
 import { conexion } from "../conexion_bd";
+import { task } from "../interface/task.interface";
 
 export async function getAllTaskService() {
   const [resp] = await conexion.query("SELECT * FROM task");
@@ -10,13 +11,15 @@ export async function getByIdTaskService(id: number) {
   return resp;
 }
 
-export async function createTaskService(task: any) {
+export async function createTaskService(task: task) {
+  console.log(task);
+  
   const [resp] = await conexion.query("INSERT INTO task SET ?", [task]);
   return resp;
 }
 
-export async function updateTaskService(id: number, task: any) {
-  const [resp] = await conexion.query("UPDATE task SET ? WHERE id = ?", [task, id]);
+export async function updateTaskService(id: number, task: task) {
+  const [resp] = await conexion.query(`UPDATE task SET img = ${task.img}, name = ${task.name}, area = ${task.area}, code = ${task.code}, startDate = ${task.startDate}, endDate = ${task.endDate}, Comentary = ${task.Comentary} WHERE task.id = ${id}`);
   return resp;
 }
 
