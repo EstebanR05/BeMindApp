@@ -6,6 +6,7 @@ import { task } from 'src/app/shared/interface/task.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Task } from 'zone.js/lib/zone-impl';
 
 @Component({
   selector: 'app-task-manager',
@@ -43,18 +44,32 @@ export class TaskManagerComponent extends BaseComponent implements OnInit {
   }
 
   async getValuesForm(): Promise<void> {
-    const result: task = await this.taskService.getById(this.id);
+    try {
+      const result: task = await this.taskService.getById(this.id);
 
-    this.form.patchValue({
-      name: result.name,
-      img: result.img,
-      area: result.area,
-      code: result.code,
-      Comentary: result.Comentary,
-      startDate: result.startDate,
-      endDate: result.endDate,
-      id_user: result.id_user,
-    });
+      // Convertir las cadenas de fecha a objetos Date
+      const startDate = new Date(result.startDate);
+      const endDate = new Date(result.endDate);
+
+      // Validar si las fechas son válidas
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        console.error('Invalid date format');
+        return;
+      }
+
+      this.form.patchValue({
+        name: result.name,
+        img: result.img,
+        area: result.area,
+        code: result.code,
+        Comentary: result.Comentary,
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0],
+        id_user: result.id_user,
+      });
+    } catch (error) {
+      console.error('Error fetching task', error);
+    }
   }
 
   async submit(): Promise<void> {

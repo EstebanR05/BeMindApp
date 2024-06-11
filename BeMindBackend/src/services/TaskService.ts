@@ -7,8 +7,8 @@ export async function getAllTaskService() {
 }
 
 export async function getByIdTaskService(id: number) {
-  const [rows] = await conexion.query("SELECT * FROM task WHERE id = ?", [id]);
-  return rows;
+  const [rows]: any = await conexion.query("SELECT * FROM task WHERE id = ?", [id]);
+  return rows[0];
 }
 
 export async function createTaskService(task: task) {
