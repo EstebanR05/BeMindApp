@@ -11,8 +11,8 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Tareas',
-    iconName: 'layout-Task',
-    route: '/Task',
+    iconName: 'list',
+    route: 'Task',
   },
   {
     navCap: 'Ui Components',

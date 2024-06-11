@@ -47,7 +47,7 @@ import { CommonModule } from '@angular/common';
     TablerIconsModule.pick(TablerIcons),
     NgScrollbarModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

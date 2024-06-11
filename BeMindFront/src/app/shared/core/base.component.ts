@@ -8,7 +8,7 @@ export class BaseComponent {
   public form!: FormGroup;
   token: any = environment.auth.JWT;
   apiUrl = environment.app.apiBaseUrl;
-
+  
   constructor() {}
 
   getControl(control: string, form: FormGroup = this.form): AbstractControl {
