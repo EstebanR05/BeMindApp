@@ -1,11 +1,11 @@
 export interface task {
-    id: number,
-    name: string,
-    img: string,
-    area: string,
-    code: number,
-    Comentary: string,
-    startDate: Date,
-    endDate: Date,
-    id_user: number
+    id: number;
+    img: string;
+    name: string;
+    area: string;
+    code: number;
+    startDate: Date;
+    endDate: Date;
+    Comentary: string;
+    id_user: number;
 }
