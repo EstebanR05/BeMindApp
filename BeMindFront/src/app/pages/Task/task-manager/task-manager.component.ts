@@ -6,7 +6,6 @@ import { task } from 'src/app/shared/interface/task.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Task } from 'zone.js/lib/zone-impl';
 
 @Component({
   selector: 'app-task-manager',

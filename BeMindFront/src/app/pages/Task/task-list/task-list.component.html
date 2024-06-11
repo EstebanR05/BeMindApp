@@ -8,11 +8,7 @@
       <strong class="aling-self-center">Información</strong>
       <div class="d-flex flex-row-reverse bd-highlight">
         <div class="btn-group">
-          <button
-            (click)="this.route.navigate(['/Task/create'])"
-            class="btn btn-sm ml-2 btn-primary"
-            type="button"
-          >
+          <button (click)="this.route.navigate(['/Task/create'])" class="btn btn-sm ml-2 btn-primary" type="button">
             Crear
           </button>
         </div>
@@ -42,25 +38,22 @@
               <td>{{ item.name }}</td>
               <td>{{ item.area }}</td>
               <td>{{ item.code }}</td>
-              <td>{{ item.startDate }}</td>
-              <td>{{ item.endDate }}</td>
+              <td>{{ item.startDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{ item.endDate | date:'yyyy-MM-dd'}}</td>
               <td>{{ item.Comentary }}</td>
               <td>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-primary"
-                  (click)="this.route.navigate(['/Task/update/', item.id])"
-                >
-                  Editar
-                </button>
-                |
-                <button
-                  type="button"
-                  class="btn btn-sm btn-danger"
-                  (click)="this.delete(item.id)"
-                >
-                  Eliminar
-                </button>
+                <div class="btn-group" role="group" aria-label="Acciones">
+                  <div class="btn-group" role="group" aria-label="Editar">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="this.route.navigate(['/Task/update/', item.id])">
+                      Editar
+                    </button>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="Eliminar" style="margin-left: 10px;"> <!-- Ajusta el margen aquí -->
+                    <button type="button" class="btn btn-sm btn-danger" (click)="this.delete(item.id)">
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
             }
