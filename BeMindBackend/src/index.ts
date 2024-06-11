@@ -5,15 +5,23 @@ import cookiesParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 import TaskRoute from "./routes/TaskRoute";
+import UserRoute from "./routes/UserRoute";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const _PORT = 3000;
+const _PORT = process.env.PORT_APPLICATION;
 
 app.use(cors({ credentials: true }));
 app.use(compression());
 app.use(cookiesParser());
 app.use(bodyParser.json());
+
+//routes
 app.use("/api", TaskRoute);
+app.use("/api", UserRoute);
+
 
 const server = http.createServer(app);
 
