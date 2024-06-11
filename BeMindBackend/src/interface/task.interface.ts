@@ -1,5 +1,3 @@
-import { user } from "./user.interface";
-
 export interface task {
     id: number;
     img: string;
@@ -9,5 +7,5 @@ export interface task {
     startDate: Date;
     endDate: Date;
     Comentary: string;
-    id_user: user;
+    id_user: number;
 }

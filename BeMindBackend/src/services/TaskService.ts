@@ -13,13 +13,12 @@ export async function getByIdTaskService(id: number) {
 
 export async function createTaskService(task: task) {
   const [resp]: any = await conexion.query(
-    `INSERT INTO task (id, img, name, area, code, startDate, endDate, Comentary, id_user) VALUES (NULL, '${task.img}', '${task.name}', '${task.area}', ${task.code}, '${task.startDate}', '${task.endDate}', '${task.Comentary}', ${task.id_user.id})`
+    `INSERT INTO task (id, img, name, area, code, startDate, endDate, Comentary, id_user) VALUES (NULL, '${task.img}', '${task.name}', '${task.area}', ${task.code}, '${task.startDate}', '${task.endDate}', '${task.Comentary}', ${task.id_user})`
   );
 
   const id = resp.insertId;
   return getByIdTaskService(id);
 }
-
 
 export async function updateTaskService(id: number, task: task) {
   const [resp] = await conexion.query(
@@ -40,7 +39,6 @@ export async function updateTaskService(id: number, task: task) {
 
   return getByIdTaskService(id);
 }
-
 
 export async function deleteTaskService(id: number) {
   const [resp] = await conexion.query("DELETE FROM task WHERE id = ?", [id]);
