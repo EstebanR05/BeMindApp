@@ -29,7 +29,7 @@ export async function getByIdTask(req: Request, res: Response) {
 
 export async function createTask(req: Request, res: Response) {
   try {
-    const task = req.body;
+    const task: task = req.body;
     const result = await createTaskService(task);
     res.status(201).json(result);
   } catch (error) {
