@@ -13,25 +13,37 @@ export class TaskService extends BaseComponent {
 
   public getAll(): Promise<any> {
     const url: string = `${this.apiUrl}/Task`;
-    //let headers = new HttpHeaders().set('Authorization', `Bearer ` + this.token);
-    return this.http.get<task[]>(url).toPromise();
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.get<task[]>(url, { headers }).toPromise();
   }
 
   public getById(id: number): Promise<any> {
     const url: string = `${this.apiUrl}/Task/${id}`;
-    //let headers = new HttpHeaders().set('Authorization', `Bearer ` + this.token);
-    return this.http.get<task>(url).toPromise();
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.get<task>(url, { headers }).toPromise();
   }
 
   public create(body: task): Promise<any> {
     const url: string = `${this.apiUrl}/Task`;
-    //let headers = new HttpHeaders().set('Authorization', `Bearer ` + this.token);
-    return this.http.post<any>(url, body).toPromise();
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.post<any>(url, body, { headers }).toPromise();
   }
 
   public update(id: number, body: task): Promise<any> {
     const url: string = `${this.apiUrl}/Task/${id}`;
-    //let headers = new HttpHeaders().set('Authorization', `Bearer ` + this.token);
-    return this.http.put<any>(url, body).toPromise();
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.put<any>(url, body, { headers }).toPromise();
   }
 }
