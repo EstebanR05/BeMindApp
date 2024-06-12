@@ -33,8 +33,8 @@ export async function login(_req: Request, res: Response): Promise<any> {
 
 export async function register(_req: Request, res: Response): Promise<any> {
   try {
-    const register: user = _req.body;
-    const user: user = await findOneByEmail(register.email);
+    const body: user = _req.body;
+    const user: user = await findOneByEmail(body.email);
 
     if (user) {
       return res
@@ -42,7 +42,7 @@ export async function register(_req: Request, res: Response): Promise<any> {
         .json({ error: "can not create, this process is invalid!" });
     }
 
-    const result: user = await createUserService(register);
+    const result: user = await createUserService(body);
     res.status(201).send(result);
   } catch (error) {
     res.status(500).json({ message: error });
@@ -52,9 +52,9 @@ export async function register(_req: Request, res: Response): Promise<any> {
 export async function updateUser(_req: Request, res: Response): Promise<any> {
   try {
     const id: number = parseInt(_req.params.id, 10);
-    const update: user = _req.body;
+    const body: user = _req.body;
 
-    const user: user = await findOneByEmail(update.email);
+    const user: user = await findOneByEmail(body.email);
 
     if (!(user.id == id)) {
       return res
@@ -62,7 +62,7 @@ export async function updateUser(_req: Request, res: Response): Promise<any> {
         .json({ error: "can not update, this process is invalid!" });
     }
 
-    const result: user = await updateUserService(id, update);
+    const result: user = await updateUserService(id, body);
     res.status(201).send(result);
   } catch (error) {
     res.status(500).json({ message: error });
