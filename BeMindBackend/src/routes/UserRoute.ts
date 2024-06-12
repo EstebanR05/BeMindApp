@@ -3,7 +3,7 @@ import { getUser, login, register, updateUser } from "../controller/UserControll
 const router = express.Router();
 
 router
-  .get("/login", login)
+  .post("/login", login)
   .post("/register", register)
   .put("/updateUser", updateUser)
   .get("/getUser", getUser);

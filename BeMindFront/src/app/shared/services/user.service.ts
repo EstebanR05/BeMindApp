@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseComponent } from '../core/base.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { user } from '../interface/user.interface';
+import { user, userLogin } from '../interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +11,9 @@ export class UserService extends BaseComponent {
     super();
   }
 
-  public login(): Promise<any> {
-    const url: string = `${this.apiUrl}/getUser`;
-    return this.http.get<user>(url).toPromise();
+  public login(body: userLogin): Promise<any> {
+    const url: string = `${this.apiUrl}/login`;
+    return this.http.post<user>(url, body).toPromise();
   }
 
   public register(body: user): Promise<any> {
