@@ -81,6 +81,8 @@ export class TaskManagerComponent extends BaseComponent implements OnInit {
 
       this.route.navigate(['Task']);
       Swal.fire('Saved!', '', 'success');
+      
     }
   }
+  
 }

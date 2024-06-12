@@ -12,10 +12,16 @@
   class="menu-list-item primary"
   *ngIf="!item.navCap"
 >
-  <i-tabler
+  <i-tabler *ngIf="item.iconName == 'list' AND item.displayName == 'Tareas'"
     class="routeIcon"
     name="{{ item.iconName }}"
+    style="margin-bottom: 10px;"
     matListItemIcon
+  ></i-tabler>
+  <i-tabler *ngIf="item.iconName != 'list'"
+  class="routeIcon"
+  name="{{ item.iconName }}"
+  matListItemIcon
   ></i-tabler>
   <span class="hide-menu">{{ item.displayName }}</span>
 </a>
