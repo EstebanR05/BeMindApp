@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { createToken } from "../security/jwt";
+import { createToken, validatedToken } from "../security/jwt";
 import { user, userLogin } from "../interface/user.interface";
 import {
   createUserService,
@@ -51,9 +51,9 @@ export async function register(_req: Request, res: Response): Promise<any> {
 
 export async function updateUser(_req: Request, res: Response): Promise<any> {
   try {
-    const id: number = parseInt(_req.params.id, 10);
     const body: user = _req.body;
-
+    const decode: user = validatedToken(_req, res);
+    const id: number = decode.id;
     const user: user = await findOneByEmail(body.email);
 
     if (!(user.id == id)) {
@@ -69,11 +69,19 @@ export async function updateUser(_req: Request, res: Response): Promise<any> {
   }
 }
 
-export async function getByIdUser(_req: Request, res: Response) {
+export async function getUser(_req: Request, res: Response) {
   try {
-    const id: number = parseInt(_req.params.id, 10);
+    const decode: user = validatedToken(_req, res);
+    const id: number = decode.id;
     const result: user = await findByIdUser(id);
-    res.status(201).send(result);
+
+    res.status(201).send({
+      id: result.id,
+      name: result.name,
+      lastName: result.lastName,
+      email: result.email,
+      studentCode: result.studentCode,
+    });
   } catch (error) {
     res.status(500).json({ message: error });
   }
