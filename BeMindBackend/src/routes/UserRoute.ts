@@ -1,10 +1,11 @@
 import express from "express";
-import { login, register, updateUser } from "../controller/UserController";
+import { getByIdUser, login, register, updateUser } from "../controller/UserController";
 const router = express.Router();
 
 router
   .get("/login", login)
   .post("/register", register)
-  .put("/updateUser", updateUser);
+  .put("/updateUser/:id", updateUser)
+  .get("/getByIdUser/:id", getByIdUser);
 
 export default router;
