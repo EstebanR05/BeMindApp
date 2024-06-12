@@ -6,3 +6,8 @@ export interface user {
   password: string;
   studentCode: number;
 }
+
+export interface userLogin {
+  email: string;
+  password: string;
+}
