@@ -56,12 +56,12 @@ export class TaskService extends BaseComponent {
     return this.http.delete<any>(url, { headers }).toPromise();
   }
 
-  public check(id: number): Promise<any> {
-    const url: string = `${this.apiUrl}/Task/${id}`;
+  public doingTask(id: number): Promise<any> {
+    const url: string = `${this.apiUrl}/doingTask/${id}`;
     let headers = new HttpHeaders().set(
       `Authorization`,
       `Bearer ` + this.token
-    )
-    return this.http.get<task>(url, {headers}).toPromise();
+    );
+    return this.http.post<any>(url, {headers}).toPromise();
   }
 }

@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { task } from 'src/app/shared/interface/task.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
-import * as $ from 'jquery';
-import 'datatables.net';
-import 'datatables.net-bs4';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -42,7 +39,9 @@ export class TaskListComponent implements OnInit {
 
   async check(id: number): Promise<void> {
     try {
-      
+      await this.taskService.doingTask(id);
+      Swal.fire('done!', '', 'success');
+      await this.getAll();
     } catch(error) {
       console.log('Error in the server: ', error);
     }
