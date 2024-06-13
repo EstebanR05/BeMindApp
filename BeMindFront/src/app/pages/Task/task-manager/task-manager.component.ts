@@ -34,7 +34,7 @@ export class TaskManagerComponent extends BaseComponent implements OnInit {
       Comentary: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      id_user: ['', Validators.required],
+      
     });
 
     if (this.id) {
