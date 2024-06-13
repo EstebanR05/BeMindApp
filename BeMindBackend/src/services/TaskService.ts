@@ -3,14 +3,14 @@ import { task } from "../interface/task.interface";
 
 export async function getAllTaskService(id_user: number) {
   const [resp] = await conexion.query(
-    `SELECT * FROM task where id_user = '${id_user}'`
+    `SELECT * FROM task where id_user = '${id_user}' AND state = 0`
   );
   return resp;
 }
 
 export async function getByIdTaskService(id: number, id_user: number) {
   const [rows]: any = await conexion.query(
-    "SELECT * FROM task WHERE id = ? and id_user = ?",
+    "SELECT * FROM task WHERE id = ? AND id_user = ?",
     [id, id_user]
   );
 
@@ -74,4 +74,12 @@ export async function doingTaskService(id: number, id_user: number, doingDate: s
   }
 
   return getByIdTaskService(id, id_user);
+}
+
+ export async function getAllDoingTaskService(id_user: number): Promise<any> {
+  const [resp] = await conexion.query(
+    `SELECT * FROM task where id_user = '${id_user}'`
+  );
+
+  return (resp == null) ? null : resp;
 }
