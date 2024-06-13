@@ -37,7 +37,7 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  async check(id: number): Promise<void> {
+  async doingTask(id: number): Promise<void> {
     try {
       await this.taskService.doingTask(id);
       Swal.fire('done!', '', 'success');
