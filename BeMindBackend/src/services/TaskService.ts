@@ -83,3 +83,18 @@ export async function doingTaskService(id: number, id_user: number, doingDate: s
 
   return (resp == null) ? null : resp;
 }
+
+export async function returnTaskService(id: number, id_user: number) { 
+  const [resp] : any = await conexion.query(
+    `UPDATE task SET
+      doingDate = null, 
+      state = 0
+    WHERE task.id = ${id} and id_user = '${id_user}'`
+  );
+
+  if(!resp){
+    return resp.info;
+  }
+
+  return getByIdTaskService(id, id_user);
+}

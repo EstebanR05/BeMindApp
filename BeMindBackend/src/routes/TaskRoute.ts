@@ -6,6 +6,7 @@ import {
   getAllDoingTask,
   getAllTask,
   getByIdTask,
+  returnTask,
   updateTask,
 } from "../controller/TaskController";
 
@@ -18,6 +19,7 @@ router
   .put("/Task/:id", updateTask)
   .delete("/Task/:id", deleteTask)
   .post("/doingTask/:id", doingTask)
-  .get("/getAllDoinTask", getAllDoingTask);
+  .get("/getAllDoinTask", getAllDoingTask)
+  .post("/returnTask/:id", returnTask);
 
 export default router;

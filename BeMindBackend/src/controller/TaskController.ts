@@ -7,6 +7,7 @@ import {
   getByIdTaskService,
   updateTaskService,
   getAllDoingTaskService,
+  returnTaskService,
 } from "../services/TaskService";
 import { task } from "../interface/task.interface";
 import { user } from "../interface/user.interface";
@@ -91,6 +92,18 @@ export async function getAllDoingTask(_req: Request, res: Response) {
 
     const tasks: task = await getAllDoingTaskService(token.id);
     res.json(tasks || {});
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+}
+
+export async function returnTask(_req: Request, res: Response) {
+  try {
+    const token: user = validatedToken(_req, res);
+    const id = parseInt(_req.params.id, 10);
+
+    const result: task = await returnTaskService(id, token.id);
+    res.json(result|| {});
   } catch (error) {
     res.status(500).json({ message: error });
   }
