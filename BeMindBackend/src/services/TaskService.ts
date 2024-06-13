@@ -78,7 +78,7 @@ export async function doingTaskService(id: number, id_user: number, doingDate: s
 
  export async function getAllDoingTaskService(id_user: number): Promise<any> {
   const [resp] = await conexion.query(
-    `SELECT * FROM task where id_user = '${id_user}'`
+    `SELECT * FROM task where id_user = '${id_user}' AND state = 1`
   );
 
   return (resp == null) ? null : resp;
