@@ -46,4 +46,13 @@ export class TaskService extends BaseComponent {
     );
     return this.http.put<any>(url, body, { headers }).toPromise();
   }
+
+  public delete(id: number): Promise<any> {
+    const url: string = `${this.apiUrl}/Task/${id}`;
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.delete<any>(url, { headers }).toPromise();
+  }
 }
