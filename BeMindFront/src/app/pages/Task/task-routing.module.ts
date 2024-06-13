@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskManagerComponent } from './task-manager/task-manager.component';
+import { TaskDoneComponent } from './task-done/task-done.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: 'update/:id',
     component: TaskManagerComponent,
   },
+  {
+    path: 'doneTask',
+    component: TaskDoneComponent
+  }
 ];
 
 @NgModule({
