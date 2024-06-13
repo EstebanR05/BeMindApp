@@ -11,6 +11,15 @@ export class TaskService extends BaseComponent {
     super();
   }
 
+  public getAllDoinTask(): Promise<any> {
+    const url: string = `${this.apiUrl}/getAllDoinTask`;
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.get<task[]>(url, {headers}).toPromise()
+  }
+
   public getAll(): Promise<any> {
     const url: string = `${this.apiUrl}/Task`;
     let headers = new HttpHeaders().set(
@@ -64,4 +73,14 @@ export class TaskService extends BaseComponent {
     );
     return this.http.post<any>(url, null ,{headers}).toPromise();
   }
+
+  public returnTask(id: number): Promise<any> {
+    const url: string = `${this.apiUrl}/returnTask/${id}`;
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.post<any>(url, null ,{headers}).toPromise();
+  }
+
 }

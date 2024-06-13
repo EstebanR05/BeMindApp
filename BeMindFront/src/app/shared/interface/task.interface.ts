@@ -8,4 +8,5 @@ export interface task {
     endDate: Date;
     Comentary: string;
     id_user: number;
+    doingDate: Date;
 }

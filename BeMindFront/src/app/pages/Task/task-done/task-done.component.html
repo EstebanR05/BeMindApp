@@ -1,1 +1,61 @@
-<p>task-done works!</p>
+<div class="my-2 d-flex justify-content-between">
+    <div class="fw-bold">Tareas</div>
+  </div>
+  
+  <div class="card p-2 mt-2">
+    <div class="card-header bg-white">
+      <div class="d-flex justify-content-between">
+        <strong class="aling-self-center">Información</strong>
+      </div>
+      <div class="card-body p-0 m-0">
+        <div class="table-responsive">
+          <table class="table" id="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Img</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">fecha realización</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(item of this.list; track item){
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.img }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.area }}</td>
+                <td>{{ item.code }}</td>
+                <td>{{ item.doingDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{ item.Comentary }}</td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Acciones">
+                    <div class="btn-group" role="group" aria-label="Enviar">
+                      <button type="button" class="btn btn-sm bg-white" (click)="this.returnTask(item.id)" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" text-danger bi bi-envelope-x-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 4.697v4.974A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-1.965.45l-.338-.207z"/>
+                            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-4.854-1.354a.5.5 0 0 0 0 .708l.647.646-.647.646a.5.5 0 0 0 .708.708l.646-.647.646.647a.5.5 0 0 0 .708-.708l-.647-.646.647-.646a.5.5 0 0 0-.708-.708l-.646.647-.646-.647a.5.5 0 0 0-.708 0"/>
+                          </svg>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+          <!-- Contenedor para los controles de paginación -->
+          <div class="pagination-container aling-self-center">
+            <div class="dataTables_paginate">
+              
+            <!-- Controles de paginación generados por DataTables -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
