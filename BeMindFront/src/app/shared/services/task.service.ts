@@ -59,9 +59,9 @@ export class TaskService extends BaseComponent {
   public doingTask(id: number): Promise<any> {
     const url: string = `${this.apiUrl}/doingTask/${id}`;
     let headers = new HttpHeaders().set(
-      `Authorization`,
+      'Authorization',
       `Bearer ` + this.token
     );
-    return this.http.post<any>(url, {headers}).toPromise();
+    return this.http.post<any>(url, null ,{headers}).toPromise();
   }
 }
