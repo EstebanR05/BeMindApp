@@ -13,6 +13,11 @@ export async function getByIdTaskService(id: number, id_user: number) {
     "SELECT * FROM task WHERE id = ? and id_user = ?",
     [id, id_user]
   );
+
+  if(!rows[0]){
+    throw new Error("Error!!");
+  }
+
   return rows[0];
 }
 
@@ -54,4 +59,19 @@ export async function updateTaskService(id: number, task: task) {
 export async function deleteTaskService(id: number) {
   const [resp] = await conexion.query("DELETE FROM task WHERE id = ?", [id]);
   return resp;
+}
+
+export async function doingTaskService(id: number, id_user: number, doingDate: string) { 
+  const [resp] : any = await conexion.query(
+    `UPDATE task SET
+      doingDate = '${doingDate}', 
+      state = 1
+    WHERE task.id = ${id} and id_user = '${id_user}'`
+  );
+
+  if(!resp){
+    return resp.info;
+  }
+
+  return getByIdTaskService(id, id_user);
 }

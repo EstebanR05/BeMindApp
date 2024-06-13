@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   createTaskService,
   deleteTaskService,
+  doingTaskService,
   getAllTaskService,
   getByIdTaskService,
   updateTaskService,
@@ -63,6 +64,21 @@ export async function deleteTask(req: Request, res: Response) {
     validatedToken(req, res);
     await deleteTaskService(id);
     res.status(204).send("success!");
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+}
+
+export async function doingTask(_req: Request, res: Response) {
+  try {
+    const token: user = validatedToken(_req, res);
+    const id = parseInt(_req.params.id, 10);
+
+    const date = new Date();
+    let doingDate = date.toISOString();
+
+    const result = await doingTaskService(id, token.id, doingDate);
+    res.json(result);
   } catch (error) {
     res.status(500).json({ message: error });
   }
