@@ -5,6 +5,16 @@ export interface user {
   email: string;
   password: string;
   studentCode: number;
+  username: string;
+  age: string;
+  profesión: string;
+  university: string;
+  address: string;
+  phone: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  aboutMe: string;
 }
 
 export interface userLogin {
