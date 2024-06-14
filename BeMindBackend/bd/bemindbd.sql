@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2024 at 11:33 PM
+-- Generation Time: Jun 15, 2024 at 12:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -69,7 +69,7 @@ CREATE TABLE `users` (
   `studentCode` int(12) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `profesión` varchar(20) DEFAULT NULL,
+  `profession` varchar(20) DEFAULT NULL,
   `university` varchar(20) DEFAULT NULL,
   `address` varchar(20) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
@@ -83,9 +83,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `lastName`, `email`, `password`, `studentCode`, `username`, `age`, `profesión`, `university`, `address`, `phone`, `city`, `country`, `postalCode`, `aboutMe`) VALUES
-(1, 'esteban', 'restrepo', 'e05072003@gmail.com', '$2b$10$/ZVcbLPSiVKSMj/', 121212, 'nabetse05', 21, 'ing sistemas', 'unicomfacauca', 'carrera #5 - 22', '3116686210', 'popayan', 'colombia', 1456, 'i\'ll be one the greatest'),
-(2, 'steiner', 'herrera', 'steinerherrera@gmail.c', '$2b$10$9QqzmhR/S.0mZXA', 121212, 'juegosSteiner', 17, 'ing sistemas', 'autonoma', 'carrera #6 - 22', '302 6226935', 'cali', 'colombia', 6541, 'hello word i\'m steiner');
+INSERT INTO `users` (`id`, `name`, `lastName`, `email`, `password`, `studentCode`, `username`, `age`, `profession`, `university`, `address`, `phone`, `city`, `country`, `postalCode`, `aboutMe`) VALUES
+(1, 'emanuel esteban', 'restrepo', 'e05072003@gmail.com', '$2b$10$/ZVcbLPSiVKSMj/', 121212, 'nabetse05', 21, 'ing sistemas', 'unicomfacauca', 'carrera #5 - 22', '3116686210', 'popayan', 'colombia', 1456, 'ill be one the greatest'),
+(2, 'steiner', 'herrera', 'steinerherrera@gmail.c', '$2b$10$9QqzmhR/S.0mZXA', 121212, 'juegosSteiner', 17, 'ing sistemas', 'autonoma', 'carrera #6 - 22', '302 6226935', 'cali', 'colombia', 6541, 'hello word im steiner');
 
 --
 -- Indexes for dumped tables
