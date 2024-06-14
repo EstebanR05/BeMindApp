@@ -19,14 +19,14 @@ export const navItems: NavItem[] = [
     iconName: 'check',
     route: 'Task/doneTask'
   },
-  // {
-  //   navCap: 'Ui Components',
-  // },
-  // {
-  //   displayName: 'Badge',
-  //   iconName: 'rosette',
-  //   route: '/ui-components/badge',
-  // },
+  {
+   navCap: 'User',
+  },
+   {
+     displayName: 'Perfil',
+     iconName: 'user-plus',
+     route: '/perfil',
+   },
   // {
   //   displayName: 'Chips',
   //   iconName: 'poker-chip',

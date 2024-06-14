@@ -23,7 +23,7 @@ export class HeaderComponent extends BaseComponent {
 
   showFiller = false;
 
-  constructor(public dialog: MatDialog, private route: Router) {
+  constructor(public dialog: MatDialog, public route: Router) {
     super();
   }
 

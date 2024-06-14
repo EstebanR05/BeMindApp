@@ -5,6 +5,7 @@ export interface user {
   email: string;
   password: string;
   studentCode: number;
+  //subi el resto de una vez asi me baso en esto
 }
 
 export interface userByToken {
