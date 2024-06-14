@@ -5,6 +5,7 @@ import { user, userLogin } from "../interface/user.interface";
 import {
   createUserService,
   findByIdUser,
+  findOneByCode,
   findOneByEmail,
   updateUserService,
 } from "../services/UserService";
@@ -35,8 +36,9 @@ export async function register(_req: Request, res: Response): Promise<any> {
   try {
     const body: user = _req.body;
     const user: user = await findOneByEmail(body.email);
+    const code: user = await findOneByCode(body.studentCode);
 
-    if (user) {
+    if (user || code) {
       return res
         .status(401)
         .json({ error: "can not create, this process is invalid!" });

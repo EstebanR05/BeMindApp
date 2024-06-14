@@ -10,6 +10,14 @@ export async function findOneByEmail(email: string) {
   return resp[0] as user;
 }
 
+export async function findOneByCode(studentCode: number) {
+  const [resp]: any = await conexion.query(
+    `SELECT * FROM Users where email = '${studentCode}'`
+  );
+
+  return resp[0] as user;
+}
+
 export async function findByIdUser(id: number): Promise<user> {
   const [rows]: any = await conexion.query("SELECT * FROM Users WHERE id = ?", [
     id,
@@ -21,9 +29,9 @@ export async function createUserService(user: user): Promise<user> {
   const hashedPassword = await bcrypt.hash(user.password, 10);
 
   const [resp]: any = await conexion.query(
-    `INSERT INTO Users (id, name, lastName, email, password, studentCode) 
-    VALUES (NULL, ?, ?, ?, ?, ?)`,
-    [user.name, user.lastName, user.email, hashedPassword, user.studentCode]
+    `INSERT INTO Users (id, name, email, password, studentCode) 
+    VALUES (NULL, ?, ?, ?, ?)`,
+    [user.name, user.email, hashedPassword, user.studentCode]
   );
 
   if (!resp) {
