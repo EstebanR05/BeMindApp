@@ -6,14 +6,14 @@ export interface user {
   password: string;
   studentCode: number;
   username: string;
-  age: string;
+  age: number;
   profesión: string;
   university: string;
   address: string;
-  phone: string;
+  phone: number;
   city: string;
   country: string;
-  postalCode: string;
+  postalCode: number;
   aboutMe: string;
 }
 
