@@ -74,24 +74,7 @@ export async function getUser(_req: Request, res: Response) {
     const decode: user = validatedToken(_req, res);
     const id: number = decode.id;
     const result: user = await findByIdUser(id);
-
-    res.status(201).send({
-      id: result.id,
-      name: result.name,
-      lastName: result.lastName,
-      email: result.email,
-      studentCode: result.studentCode,
-      username: result.username,
-      age: result.age,
-      profesión: result.profesión,
-      university: result.university,
-      address: result.address,
-      phone: result.phone,
-      city: result.city,
-      country: result.country,
-      postalCode: result.postalCode,
-      aboutMe: result.aboutMe,
-    });
+    res.status(201).send(result);
   } catch (error) {
     res.status(500).json({ message: error });
   }
