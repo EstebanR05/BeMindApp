@@ -3,9 +3,17 @@ export interface user {
   name: string;
   lastName: string;
   email: string;
-  password: string;
   studentCode: number;
-  //subi el resto de una vez asi me baso en esto
+  username: string;
+  age: number;
+  profesión: string;
+  university: string;
+  address: string;
+  phone: number;
+  city: string;
+  country: string;
+  postalCode: number;
+  aboutMe: string;
 }
 
 export interface userByToken {
