@@ -81,6 +81,16 @@ export async function getUser(_req: Request, res: Response) {
       lastName: result.lastName,
       email: result.email,
       studentCode: result.studentCode,
+      username: result.username,
+      age: result.age,
+      profesión: result.profesión,
+      university: result.university,
+      address: result.address,
+      phone: result.phone,
+      city: result.city,
+      country: result.country,
+      postalCode: result.postalCode,
+      aboutMe: result.aboutMe,
     });
   } catch (error) {
     res.status(500).json({ message: error });
