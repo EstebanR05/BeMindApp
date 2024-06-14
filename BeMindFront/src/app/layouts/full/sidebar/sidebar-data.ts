@@ -10,20 +10,25 @@ export const navItems: NavItem[] = [
     route: '/dashboard',
   },
   {
-    displayName: 'Tareas',
+    displayName: 'Task',
     iconName: 'list',
     route: 'Task',
   },
   {
-    displayName: 'Tareas realizadas',
+    displayName: 'Completed Tasks',
     iconName: 'check',
     route: 'Task/doneTask'
+  },
+  {
+    displayName: 'Calendary',
+    iconName: 'map',
+    route: 'calendary'
   },
   {
    navCap: 'User',
   },
    {
-     displayName: 'Perfil',
+     displayName: 'Profile',
      iconName: 'user-plus',
      route: '/perfil',
    },

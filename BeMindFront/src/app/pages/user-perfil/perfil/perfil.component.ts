@@ -1,12 +1,16 @@
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from './../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/core/base.component';
 import { task } from 'src/app/shared/interface/task.interface';
+import { user } from 'src/app/shared/interface/user.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
@@ -14,10 +18,12 @@ export class PerfilComponent extends BaseComponent implements OnInit {
 
   public doing: number = 0;
   public doneTask: number = 0;
+  public user = {} as user;
 
-  constructor(private taskService: TaskService) { super() }
+  constructor(private taskService: TaskService, private userService: UserService, private fb: FormBuilder) { super() }
 
   ngOnInit(): void {
+    this._getUserInfo();
     this.bindingParams();
   }
 
@@ -34,6 +40,15 @@ export class PerfilComponent extends BaseComponent implements OnInit {
   private async _getDoneTask(): Promise<number> {
     const response: task[] = await this.taskService.getAllDoinTask();
     return (response != null) ? response.length : 0;
+  }
+
+  private async _getUserInfo(): Promise<any> {
+    try {
+      const response: user = await this.userService.getUser();
+      this.user = response;
+    } catch (error) {
+      console.error('Error fetching task', error);
+    }
   }
 
 }
