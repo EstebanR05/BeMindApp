@@ -7,7 +7,7 @@ export interface user {
   studentCode: number;
   username: string;
   age: number;
-  profesión: string;
+  profession: string;
   university: string;
   address: string;
   phone: number;

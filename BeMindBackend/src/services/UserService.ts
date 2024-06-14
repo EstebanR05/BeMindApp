@@ -35,15 +35,24 @@ export async function createUserService(user: user): Promise<user> {
 }
 
 export async function updateUserService(id: number, user: user): Promise<user> {
-  const hashedPassword = await bcrypt.hash(user.password, 10);
+  //const hashedPassword = await bcrypt.hash(user.password, 10);
 
   const [resp] = await conexion.query(
     `UPDATE Users SET 
       name = '${user.name}', 
       lastName = '${user.lastName}', 
-      email = '${user.email}', 
-      password = '${hashedPassword}', 
-      studentCode = '${user.studentCode}' 
+      email = '${user.email}',  
+      studentCode = '${user.studentCode}',
+      username = '${user.username}',
+      age = '${user.age}',
+      profession = '${user.profession}',
+      university = '${user.university}',
+      address = '${user.address}',
+      phone = '${user.phone}',
+      city = '${user.city}',
+      country = '${user.country}',
+      postalCode = '${user.postalCode}',
+      aboutMe = '${user.aboutMe}' 
     WHERE Users.id = '${id}'`
   );
 
