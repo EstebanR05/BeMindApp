@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2024 at 10:52 PM
+-- Generation Time: Jun 14, 2024 at 11:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -47,12 +47,12 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`id`, `img`, `name`, `area`, `code`, `startDate`, `endDate`, `Comentary`, `id_user`, `state`, `doingDate`) VALUES
 (2, 'perrito.png', 'ensayo3', 'español', 101010, '2024-06-08 00:00:00', '2024-06-14 00:00:00', 'hacer lo mas pronto posible', 2, 0, NULL),
-(10, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 1, '2024-06-13 20:51:36'),
+(10, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL),
 (11, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL),
 (12, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL),
 (13, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL),
 (14, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL),
-(15, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 0, NULL);
+(15, 'perrito.png', 'hacer arroz', 'cocina', 252525, '2024-06-11 00:00:00', '2024-06-18 00:00:00', 'hacerlo rapido', 1, 1, '2024-06-13 21:51:12');
 
 -- --------------------------------------------------------
 
@@ -66,16 +66,26 @@ CREATE TABLE `users` (
   `lastName` varchar(22) NOT NULL,
   `email` varchar(22) NOT NULL,
   `password` varchar(22) NOT NULL,
-  `studentCode` int(12) NOT NULL
+  `studentCode` int(12) NOT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `profesión` varchar(20) DEFAULT NULL,
+  `university` varchar(20) DEFAULT NULL,
+  `address` varchar(20) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  `country` varchar(20) DEFAULT NULL,
+  `postalCode` int(11) DEFAULT NULL,
+  `aboutMe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `lastName`, `email`, `password`, `studentCode`) VALUES
-(1, 'esteban', 'restrepo', 'e05072003@gmail.com', '$2b$10$/ZVcbLPSiVKSMj/', 121212),
-(2, 'steiner', 'herrera', 'steinerherrera@gmail.c', '$2b$10$9QqzmhR/S.0mZXA', 121212);
+INSERT INTO `users` (`id`, `name`, `lastName`, `email`, `password`, `studentCode`, `username`, `age`, `profesión`, `university`, `address`, `phone`, `city`, `country`, `postalCode`, `aboutMe`) VALUES
+(1, 'esteban', 'restrepo', 'e05072003@gmail.com', '$2b$10$/ZVcbLPSiVKSMj/', 121212, 'nabetse05', 21, 'ing sistemas', 'unicomfacauca', 'carrera #5 - 22', '3116686210', 'popayan', 'colombia', 1456, 'i\'ll be one the greatest'),
+(2, 'steiner', 'herrera', 'steinerherrera@gmail.c', '$2b$10$9QqzmhR/S.0mZXA', 121212, 'juegosSteiner', 17, 'ing sistemas', 'autonoma', 'carrera #6 - 22', '302 6226935', 'cali', 'colombia', 6541, 'hello word i\'m steiner');
 
 --
 -- Indexes for dumped tables
