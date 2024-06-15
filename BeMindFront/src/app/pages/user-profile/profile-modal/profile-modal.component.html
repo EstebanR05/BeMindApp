@@ -1,1 +1,33 @@
-<p>profile-modal works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()" #ngForm="ngForm" role="form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-control-label fw-bold" for="input-address">Name</label>
+                        <input id="input-address" class="form-control form-control-alternative"
+                            placeholder="Enter your name" formControlName="name" type="email">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control-label fw-bold" for="input-address">Email Address</label>
+                        <input id="input-address" class="form-control form-control-alternative"
+                            placeholder="Home Address" formControlName="email" type="email">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control-label fw-bold" for="input-city">City</label>
+                        <input id="input-city" class="form-control form-control-alternative" placeholder="City"
+                            formControlName="city" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="this.closeModal.emit();"
+            data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+</form>

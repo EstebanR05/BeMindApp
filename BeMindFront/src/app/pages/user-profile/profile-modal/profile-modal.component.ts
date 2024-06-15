@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/shared/core/base.component';
 import { user } from 'src/app/shared/interface/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -17,7 +17,22 @@ export class ProfileModalComponent extends BaseComponent implements OnInit {
   constructor(private userService: UserService, private fb: FormBuilder) { super() }
 
   ngOnInit(): void {
-    this.form = this.fb.group({});
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      studentCode: ['', Validators.required],
+      username: ['', Validators.required],
+      age: ['', Validators.required],
+      profession: ['', Validators.required],
+      university: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      aboutMe: ['', Validators.required],
+    });
 
     this.getValuesForm();
   }
@@ -32,6 +47,7 @@ export class ProfileModalComponent extends BaseComponent implements OnInit {
       try {
         await this.userService.updateUser(this.form.value);
         this.handleSuccess("Update succesible!");
+        this.closeModal.emit();
       } catch (error: any) {
         this.handleError(error.error.message);
       }
