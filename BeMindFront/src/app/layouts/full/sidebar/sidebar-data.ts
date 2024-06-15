@@ -24,14 +24,14 @@ export const navItems: NavItem[] = [
     iconName: 'map',
     route: 'calendary'
   },
-  // {
-  //  navCap: 'User',
-  // },
-  //  {
-  //    displayName: 'Profile',
-  //    iconName: 'user-plus',
-  //    route: '/profile',
-  //  },
+  {
+    navCap: 'User',
+  },
+  {
+    displayName: 'Profile',
+    iconName: 'user-plus',
+    route: '/profile',
+  },
   // {
   //   displayName: 'Chips',
   //   iconName: 'poker-chip',
