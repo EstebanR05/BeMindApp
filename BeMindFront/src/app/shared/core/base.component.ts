@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({ template: '' })
 export class BaseComponent {
@@ -9,6 +10,11 @@ export class BaseComponent {
   public form!: FormGroup;
   token: any = environment.auth.JWT;
   apiUrl = environment.app.apiBaseUrl;
+
+  //modal
+  selected$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  modalDisplay$: BehaviorSubject<any> = new BehaviorSubject<any>("none");
+  subscription!: Subscription;
 
   constructor() { }
 
@@ -28,5 +34,16 @@ export class BaseComponent {
 
   handleSuccess(message: string) {
     Swal.fire({ title: 'Saved!', text: message, icon: 'success' });
+  }
+
+  openModal(event: any) {
+    this.selected$.next({ event })
+    this.modalDisplay$.next("block");
+  }
+
+  closeModalMethod() {
+    this.selected$.next(null);
+    this.modalDisplay$.next("none");
+    this.subscription.unsubscribe();
   }
 }

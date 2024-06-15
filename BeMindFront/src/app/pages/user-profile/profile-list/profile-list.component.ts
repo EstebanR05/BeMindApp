@@ -9,8 +9,6 @@ import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-profile-list',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './profile-list.component.html',
   styleUrl: './profile-list.component.scss'
 })
@@ -51,10 +49,10 @@ export class ProfileListComponent extends BaseComponent implements OnInit {
     }
   }
 
-  openModal() {
-    const modalElement = document.getElementById('myModal')!;
-    const modal = new Modal(modalElement);
-    modal.show();
-  }
+  // openModal() {
+  //   const modalElement = document.getElementById('myModal')!;
+  //   const modal = new Modal(modalElement);
+  //   modal.show();
+  // }
 
 }

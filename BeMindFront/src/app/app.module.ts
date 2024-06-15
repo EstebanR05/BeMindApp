@@ -26,6 +26,7 @@ import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileModule } from './pages/user-profile/user-profile.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     CommonModule,
     NgbModule,
+    UserProfileModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
