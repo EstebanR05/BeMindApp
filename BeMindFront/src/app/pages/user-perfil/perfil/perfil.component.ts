@@ -1,4 +1,4 @@
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/core/base.component';
@@ -6,6 +6,8 @@ import { task } from 'src/app/shared/interface/task.interface';
 import { user } from 'src/app/shared/interface/user.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { CommonModule } from '@angular/common';
+import { Modal } from 'bootstrap';
+
 
 @Component({
   selector: 'app-perfil',
@@ -49,6 +51,12 @@ export class PerfilComponent extends BaseComponent implements OnInit {
     } catch (error) {
       console.error('Error fetching task', error);
     }
+  }
+
+  openModal() {
+    const modalElement = document.getElementById('myModal')!;
+    const modal = new Modal(modalElement);
+    modal.show();
   }
 
 }
