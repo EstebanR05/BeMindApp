@@ -1,4 +1,3 @@
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/shared/core/base.component';
@@ -8,21 +7,20 @@ import { TaskService } from 'src/app/shared/services/task.service';
 import { CommonModule } from '@angular/common';
 import { Modal } from 'bootstrap';
 
-
 @Component({
-  selector: 'app-perfil',
+  selector: 'app-profile-list',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.scss'
+  imports: [CommonModule],
+  templateUrl: './profile-list.component.html',
+  styleUrl: './profile-list.component.scss'
 })
-export class PerfilComponent extends BaseComponent implements OnInit {
+export class ProfileListComponent extends BaseComponent implements OnInit {
 
   public doing: number = 0;
   public doneTask: number = 0;
   public user = {} as user;
 
-  constructor(private taskService: TaskService, private userService: UserService, private fb: FormBuilder) { super() }
+  constructor(private taskService: TaskService, private userService: UserService) { super() }
 
   ngOnInit(): void {
     this._getUserInfo();

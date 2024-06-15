@@ -30,7 +30,7 @@ export const navItems: NavItem[] = [
    {
      displayName: 'Profile',
      iconName: 'user-plus',
-     route: '/perfil',
+     route: '/profile',
    },
   // {
   //   displayName: 'Chips',

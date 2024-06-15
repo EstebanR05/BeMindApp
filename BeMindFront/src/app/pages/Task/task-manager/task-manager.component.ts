@@ -34,7 +34,6 @@ export class TaskManagerComponent extends BaseComponent implements OnInit {
       Comentary: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      
     });
 
     if (this.id) {
@@ -64,7 +63,6 @@ export class TaskManagerComponent extends BaseComponent implements OnInit {
         Comentary: result.Comentary,
         startDate: startDate.toISOString().split('T')[0],
         endDate: endDate.toISOString().split('T')[0],
-        id_user: result.id_user,
       });
     } catch (error) {
       console.error('Error fetching task', error);

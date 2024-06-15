@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
-import { PerfilComponent } from './pages/user-perfil/perfil/perfil.component';
+import { ProfileListComponent } from './pages/user-profile/profile-list/profile-list.component';
 
 const routes: Routes = [
   {
@@ -20,11 +20,6 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
       },
       {
-        path: 'Task',
-        loadChildren: () =>
-          import('./pages/Task/task.module').then((m) => m.TaskModule),
-      },
-      {
         path: 'ui-components',
         loadChildren: () =>
           import('./pages/ui-components/ui-components.module').then(
@@ -37,8 +32,13 @@ const routes: Routes = [
           import('./pages/extra/extra.module').then((m) => m.ExtraModule),
       },
       {
-        path: 'perfil',
-        component: PerfilComponent
+        path: 'Task',
+        loadChildren: () =>
+          import('./pages/Task/task.module').then((m) => m.TaskModule),
+      },
+      {
+        path: 'profile',
+        component: ProfileListComponent
       }
     ],
   },
