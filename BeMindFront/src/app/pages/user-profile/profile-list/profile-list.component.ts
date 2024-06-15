@@ -4,8 +4,6 @@ import { BaseComponent } from 'src/app/shared/core/base.component';
 import { task } from 'src/app/shared/interface/task.interface';
 import { user } from 'src/app/shared/interface/user.interface';
 import { TaskService } from 'src/app/shared/services/task.service';
-import { CommonModule } from '@angular/common';
-import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-profile-list',

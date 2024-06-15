@@ -32,8 +32,10 @@ export class BaseComponent {
     Swal.fire({ title: 'Error!', text: error, icon: 'warning' });
   }
 
-  handleSuccess(message: string) {
-    Swal.fire({ title: 'Saved!', text: message, icon: 'success' });
+  async handleSuccess(message: string) {
+    Swal.fire({ title: 'Success!', text: message, icon: 'success' }).then(() => {
+      window.location.reload();
+    })
   }
 
   openModal(event: any) {
