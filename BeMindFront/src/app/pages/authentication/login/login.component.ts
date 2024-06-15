@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/core/base.component';
-import { user, userByToken } from 'src/app/shared/interface/user.interface';
+import { user } from 'src/app/shared/interface/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -31,20 +31,12 @@ export class AppSideLoginComponent extends BaseComponent implements OnInit {
     if (this.form.valid) {
       try {
         this.clearHistory();
-        const result: userByToken = await this.userService.login(this.form.value);
+        const result: user = await this.userService.login(this.form.value);
         localStorage.setItem("token", result.token);
         this.route.navigate(['/dashboard']);
-      } catch (error) {
-        this.handleLoginError();
+      } catch (error: any) {
+        this.handleError(error.error.message);
       }
     }
-  }
-
-  private handleLoginError() {
-    Swal.fire({
-      title: 'Error!',
-      text: 'Su Correo o contraseña es incorrecta',
-      icon: 'warning',
-    });
   }
 }

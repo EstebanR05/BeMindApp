@@ -14,14 +14,6 @@ export interface user {
   country: string;
   postalCode: number;
   aboutMe: string;
-}
-
-export interface userByToken {
-  id: number;
-  name: string;
-  lastName: string;
-  email: string;
-  studentCode: number;
   token: string;
 }
 

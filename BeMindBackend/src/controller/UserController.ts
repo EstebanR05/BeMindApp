@@ -18,18 +18,13 @@ export async function login(_req: Request, res: Response): Promise<any> {
     user == null ? false : await bcrypt.compare(login.password, user.password); // Comparing hashed password with plaintext password
 
   if (!(user && !passwordCorrect)) {
-    return res.status(401).json({ error: "Invalid email or password!" });
+    return res.status(401).json({ message: "Invalid email or password!" });
   }
 
   const token: string = createToken(user);
+  user.token = token;
 
-  return res.status(200).json({
-    email: user.email,
-    name: user.name,
-    lastName: user.lastName,
-    studentCode: user.studentCode,
-    token: token,
-  });
+  return res.status(200).json(user);
 }
 
 export async function register(_req: Request, res: Response): Promise<any> {
@@ -39,15 +34,13 @@ export async function register(_req: Request, res: Response): Promise<any> {
     const code: user = await findOneByCode(body.studentCode);
 
     if (user || code) {
-      return res
-        .status(401)
-        .json({ error: "can not create, this process is invalid!" });
+      throw new Error("can not create, existing other user using the email or code!");
     }
 
     const result: user = await createUserService(body);
-    res.status(201).send(result);
-  } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(201).send(result || {});
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 }
 
@@ -59,15 +52,13 @@ export async function updateUser(_req: Request, res: Response): Promise<any> {
     const user: user = await findOneByEmail(body.email);
 
     if (!(user.id == id)) {
-      return res
-        .status(401)
-        .json({ error: "can not update, this process is invalid!" });
+      throw new Error("can not update, this process is invalid!");
     }
 
     const result: user = await updateUserService(id, body);
     res.status(201).send(result);
-  } catch (error) {
-    res.status(500).json({ message: error });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 }
 
@@ -77,7 +68,7 @@ export async function getUser(_req: Request, res: Response) {
     const id: number = decode.id;
     const result: user = await findByIdUser(id);
     res.status(201).send(result);
-  } catch (error) {
-    res.status(500).json({ message: error });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 }

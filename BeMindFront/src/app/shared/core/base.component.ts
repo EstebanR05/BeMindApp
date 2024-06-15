@@ -23,10 +23,10 @@ export class BaseComponent {
   }
 
   handleError(error: string) {
-    Swal.fire({
-      title: 'Error!',
-      text: error,
-      icon: 'warning',
-    });
+    Swal.fire({ title: 'Error!', text: error, icon: 'warning' });
+  }
+
+  handleSuccess(message: string) {
+    Swal.fire({ title: 'Saved!', text: message, icon: 'success' });
   }
 }

@@ -15,6 +15,7 @@ export interface user {
   country: string;
   postalCode: number;
   aboutMe: string;
+  token: string;
 }
 
 export interface userLogin {

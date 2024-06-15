@@ -16,9 +16,9 @@ export class UserService extends BaseComponent {
     return this.http.post<user>(url, body).toPromise();
   }
 
-  public register(body: user): Promise<any> {
+  public register(body: user): Promise<user> {
     const url: string = `${this.apiUrl}/register`;
-    return this.http.post<any>(url, body).toPromise();
+    return this.http.post<user | any>(url, body).toPromise();
   }
 
   public getUser(): Promise<any> {

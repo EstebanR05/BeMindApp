@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/core/base.component';
+import { user } from 'src/app/shared/interface/user.interface';
 import { UserService } from 'src/app/shared/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,6 @@ export class AppSideRegisterComponent extends BaseComponent implements OnInit {
     });
   }
 
-
   get f() {
     return this.form.controls;
   }
@@ -30,11 +29,11 @@ export class AppSideRegisterComponent extends BaseComponent implements OnInit {
     if (this.form.valid) {
       try {
         this.clearHistory();
-        //await this.userService.register(this.form.value);
-        Swal.fire('Saved!', 'User created! please now sign in', 'success');
+        await this.userService.register(this.form.value);
+        this.handleSuccess('User created! please now sign in');
         this.route.navigate(['/authentication/login']);
-      } catch (error) {
-        this.handleError("error en los datos ingresados");
+      } catch (error: any) {
+        this.handleError(error.error.message);
       }
     }
   }
