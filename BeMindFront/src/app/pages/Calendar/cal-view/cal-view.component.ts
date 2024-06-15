@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 
 @Component({
@@ -11,6 +13,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 export class CalViewComponent {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin]
+    plugins: [dayGridPlugin, interactionPlugin]
   };
+
+
 }
+
