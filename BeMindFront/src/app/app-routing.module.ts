@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { ProfileListComponent } from './pages/user-profile/profile-list/profile-list.component';
+import { CalViewComponent } from './pages/Calendar/cal-view/cal-view.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileListComponent
+      },
+      {
+        path: 'calendar',
+        component: CalViewComponent
       }
     ],
   },

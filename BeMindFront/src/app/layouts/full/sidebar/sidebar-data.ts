@@ -20,9 +20,9 @@ export const navItems: NavItem[] = [
     route: 'Task/doneTask'
   },
   {
-    displayName: 'Calendary',
+    displayName: 'Calendar',
     iconName: 'map',
-    route: 'calendary'
+    route: 'calendar'
   },
   {
     navCap: 'User',

@@ -27,6 +27,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileModule } from './pages/user-profile/user-profile.module';
+import { CalendarModule } from './pages/Calendar/calendar.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { UserProfileModule } from './pages/user-profile/user-profile.module';
     HttpClientModule,
     CommonModule,
     NgbModule,
-    UserProfileModule
+    UserProfileModule,
+    CalendarModule
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
