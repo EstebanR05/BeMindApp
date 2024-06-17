@@ -4,10 +4,12 @@ import bodyParser from "body-parser";
 import cookiesParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
+import dotenv from "dotenv";
+
 import TaskRoute from "./routes/TaskRoute";
 import UserRoute from "./routes/UserRoute";
 import calendarRoute from "./routes/CalendarRoute";
-import dotenv from "dotenv";
+import DashboardRoute from "./routes/DashboardRoute";
 
 dotenv.config();
 
@@ -23,7 +25,7 @@ app.use(bodyParser.json());
 app.use("/api", TaskRoute);
 app.use("/api", UserRoute);
 app.use("/api", calendarRoute);
-
+app.use("/api/Dashboard", DashboardRoute);
 
 const server = http.createServer(app);
 
