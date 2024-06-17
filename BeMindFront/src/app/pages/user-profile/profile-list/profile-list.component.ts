@@ -19,6 +19,10 @@ export class ProfileListComponent extends BaseComponent implements OnInit {
   constructor(private taskService: TaskService, private userService: UserService) { super() }
 
   ngOnInit(): void {
+    this.onReload();
+  }
+
+  public onReload(): void {
     this._getUserInfo();
     this.bindingParams();
   }

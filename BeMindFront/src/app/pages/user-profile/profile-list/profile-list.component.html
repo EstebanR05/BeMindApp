@@ -240,7 +240,7 @@
                             </div>
                         </div>
                         <app-profile-modal *ngIf="selected$ | async as selected;" [modal]="selected"
-                            (closeModal)="closeModalMethod()"></app-profile-modal>
+                            (closeModal)="closeModalMethod()" (reload)=" this.onReload();" ></app-profile-modal>
                     </div>
                 </div>
             </div>

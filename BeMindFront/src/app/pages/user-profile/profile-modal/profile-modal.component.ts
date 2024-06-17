@@ -13,6 +13,7 @@ export class ProfileModalComponent extends BaseComponent implements OnInit {
 
   @Input() modal: any;
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
+  @Output() reload: EventEmitter<any> = new EventEmitter();
 
   constructor(private userService: UserService, private fb: FormBuilder) { super() }
 
@@ -48,6 +49,7 @@ export class ProfileModalComponent extends BaseComponent implements OnInit {
         await this.userService.updateUser(this.form.value);
         this.handleSuccess("Update succesible!");
         this.closeModal.emit();
+        this.reload.emit();
       } catch (error: any) {
         this.handleError(error.error.message);
       }

@@ -1,5 +1,6 @@
 export interface Calendar {
-    id: any;
+    id: string;
     title: string;
     start: string;
+    description: string;
 }
