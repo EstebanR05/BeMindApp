@@ -1,11 +1,11 @@
 <div class="my-2 d-flex justify-content-between">
   <div class="fw-bold">
     <svg (click)="this.location.back()" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-      class="bi bi-box-arrow-left mb-2 mr-2" viewBox="0 0 16 16">
+         class="bi bi-box-arrow-left mb-2 mr-2" viewBox="0 0 16 16">
       <path fill-rule="evenodd"
-        d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
       <path fill-rule="evenodd"
-        d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
     </svg>
     {{ (this.id ? "Actualizar" : "Crear") + " Tarea" }}
   </div>
@@ -34,19 +34,19 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-3 col-sm-6">
-          <label for="inputState" class="form-label text-dark">Imagen</label>
-          <select class="form-select form-control form-control-sm " formControlName="img">
-            <option [ngValue]="null" [disabled]="true">Selecciona la imagen</option>
-            <option [value]="item" *ngFor="let item of images">{{item}}</option>
+          <label class="form-label text-dark">Imagen</label>
+          <select class="form-select form-select-sm" formControlName="img">
+            <option value="" selected [disabled]="true">Selecciona la imagen</option>
+            <option [value]="item" *ngFor="let item of images">{{ item }}</option>
           </select>
-            <div *ngIf="getControl('img').invalid && ngForm.submitted" class="text-left" optionLabel="name">
+          <div *ngIf="getControl('img').invalid && ngForm.submitted" class="text-left" optionLabel="name">
             <label class="text-danger text-xs">img es requerida o invalida</label>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Tarea</label>
           <input type="text" class="form-control form-control-sm" placeholder="Ingrese la tarea"
-            formControlName="name" />
+                 formControlName="name"/>
           <div *ngIf="getControl('name').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">Tarea es requerido o invalido</label>
           </div>
@@ -54,7 +54,7 @@
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Area</label>
           <input type="text" class="form-control form-control-sm" placeholder="Ingresar el area"
-            formControlName="area" />
+                 formControlName="area"/>
           <div *ngIf="getControl('area').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">area es requerida o invalida</label>
           </div>
@@ -62,7 +62,7 @@
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Codigo</label>
           <input type="number" class="form-control form-control-sm" placeholder="Ingrese el Codigo"
-            formControlName="code" />
+                 formControlName="code"/>
           <div *ngIf="getControl('code').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">Codigo es requerido o invalido</label>
           </div>
@@ -73,7 +73,7 @@
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Comentario</label>
           <input type="text" class="form-control form-control-sm" placeholder="Ingrese el Comentario"
-            formControlName="Comentary" />
+                 formControlName="Comentary"/>
           <div *ngIf="getControl('Comentary').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">Comentario es requerido o invalido</label>
           </div>
@@ -81,7 +81,7 @@
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Fecha Inicial</label>
           <input type="date" class="form-control form-control-sm" placeholder="Ingrese la fecha inicial"
-            formControlName="startDate" />
+                 formControlName="startDate"/>
           <div *ngIf="getControl('startDate').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">fecha incial es requerida o invalida</label>
           </div>
@@ -89,7 +89,7 @@
         <div class="col-lg-3 col-sm-6">
           <label for="inputState" class="form-label text-dark">Fecha Final</label>
           <input type="date" class="form-control form-control-sm" placeholder="Ingrese la fecha final"
-            formControlName="endDate" />
+                 formControlName="endDate"/>
           <div *ngIf="getControl('endDate').invalid && ngForm.submitted" class="text-left">
             <label class="text-danger text-xs">Fecha Final es requerida o invalida</label>
           </div>
