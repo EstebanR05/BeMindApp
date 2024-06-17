@@ -37,7 +37,7 @@
           <label class="form-label text-dark">Imagen</label>
           <select class="form-select form-select-sm" formControlName="img">
             <option value="" selected [disabled]="true">Selecciona la imagen</option>
-            <option [value]="item" *ngFor="let item of images">{{ item }}</option>
+            <option [value]="item" *ngFor="let item of images"> {{ item }}</option>
           </select>
           <div *ngIf="getControl('img').invalid && ngForm.submitted" class="text-left" optionLabel="name">
             <label class="text-danger text-xs">img es requerida o invalida</label>
