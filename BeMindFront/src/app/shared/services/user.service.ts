@@ -16,6 +16,11 @@ export class UserService extends BaseComponent {
     return this.http.post<user>(url, body).toPromise();
   }
 
+  public logout(): Promise<any> {
+    const url: string = `${this.apiUrl}/logout`;
+    return this.http.get<user>(url).toPromise();
+  }
+
   public register(body: user): Promise<user> {
     const url: string = `${this.apiUrl}/register`;
     return this.http.post<user | any>(url, body).toPromise();

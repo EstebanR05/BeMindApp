@@ -27,6 +27,10 @@ export async function login(_req: Request, res: Response): Promise<any> {
   return res.status(200).json(user);
 }
 
+export async function logout(_req: Request, res: Response): Promise<any> {
+  res.clearCookie("token").json({ message: "token deleted!" });
+}
+
 export async function register(_req: Request, res: Response): Promise<any> {
   try {
     const body: user = _req.body;

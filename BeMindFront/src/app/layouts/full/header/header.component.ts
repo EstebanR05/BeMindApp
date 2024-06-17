@@ -8,6 +8,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/core/base.component';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -23,12 +24,13 @@ export class HeaderComponent extends BaseComponent {
 
   showFiller = false;
 
-  constructor(public dialog: MatDialog, public route: Router) {
+  constructor(public dialog: MatDialog, public route: Router, private userService: UserService) {
     super();
   }
 
-  public logOut() {
+  public async logOut(): Promise<void> {
     this.clearHistory();
     this.route.navigate(['/authentication/login']);
+    await this.userService.logout();
   }
 }
