@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getAllYearly } from "../controller/DashboardController";
+import { getAllDoInTheWeek, getAllRecentlyDone, getAllYearly } from "../controller/DashboardController";
 
 const route = Router();
 
 route
-.get('/getAllYearly', getAllYearly)
-.get('/')
-.get('/');
+    .get('/getAllYearly', getAllYearly)
+    .get('/getAllRecentlyDone', getAllRecentlyDone)
+    .get('/getAllDoInTheWeek', getAllDoInTheWeek);
 
 export default route;
