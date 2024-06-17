@@ -6,6 +6,7 @@ import compression from "compression";
 import cors from "cors";
 import TaskRoute from "./routes/TaskRoute";
 import UserRoute from "./routes/UserRoute";
+import calendarRoute from "./routes/CalendarRoute";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 //routes
 app.use("/api", TaskRoute);
 app.use("/api", UserRoute);
+app.use("/api", calendarRoute);
 
 
 const server = http.createServer(app);
