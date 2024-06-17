@@ -6,7 +6,6 @@ export interface AllByYearly {
 export interface RecentlyDone {
     name: string;
     area: string;
-    Comentary: string;
     doingDate: Date;
 }
 
