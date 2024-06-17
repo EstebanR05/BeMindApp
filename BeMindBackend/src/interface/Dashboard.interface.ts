@@ -1,4 +1,5 @@
 export interface AllByYearly {
+    month: number;
     taskDoing: number;
     taskDone: number;
 }

@@ -4,7 +4,7 @@ import { AllByYearly, RecentlyDone, DoInTheWeek } from "../interface/Dashboard.i
 
 export async function getAllYearly(_req: Request, res: Response) {
     try {
-        const result: AllByYearly[] = await findAllByYearly();
+        const result: AllByYearly[] = await findAllByYearly(1, "2023-01-01", "2023-12-31");
         res.send(result || []);
     } catch (error) {
         res.status(500).json({ message: error });
@@ -13,8 +13,8 @@ export async function getAllYearly(_req: Request, res: Response) {
 
 export async function getAllRecentlyDone(_req: Request, res: Response) {
     try {
-        const result: RecentlyDone[] = await findRecentlyDone();
-        res.send(result || []);
+        const result: RecentlyDone = await findRecentlyDone();
+        res.send(result || {});
     } catch (error) {
         res.status(500).json({ message: error });
     }
