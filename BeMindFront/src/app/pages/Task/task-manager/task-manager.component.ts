@@ -14,7 +14,12 @@ import Swal from 'sweetalert2';
 })
 export class TaskManagerComponent extends BaseComponent implements OnInit {
   public id: any = this.ActiveRoute.snapshot.paramMap.get('id');
-
+  public images: string[] = [
+    'school',
+    'autonoma',
+    'home'
+  ]
+  public selected: any = "Selecciona una imagen"
   constructor(
     private ActiveRoute: ActivatedRoute,
     private fb: FormBuilder,
