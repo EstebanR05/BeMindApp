@@ -33,7 +33,9 @@ export class AppSideLoginComponent extends BaseComponent implements OnInit {
         this.clearHistory();
         const result: user = await this.userService.login(this.form.value);
         localStorage.setItem("token", result.token);
-        this.route.navigate(['/dashboard']);
+        this.route.navigate(['/dashboard']).then(() => {
+          window.location.reload();
+        });
       } catch (error: any) {
         this.handleError(error.error.message);
       }
