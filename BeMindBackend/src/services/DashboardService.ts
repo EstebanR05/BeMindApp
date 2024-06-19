@@ -23,7 +23,7 @@ export async function findAllByYearly(idUser: number, startDate: string, endDate
 
 export async function findRecentlyDone(): Promise<any> {
     const [resp]: any = await conexion.query(
-        `SELECT * FROM task WHERE status = 0`
+        `SELECT t.name, t.area, t.doingDate FROM task as t WHERE t.state = 1`
     );
 
     return resp as RecentlyDone[];
