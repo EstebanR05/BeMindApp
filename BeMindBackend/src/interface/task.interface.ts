@@ -12,6 +12,7 @@ export interface task {
 
 export interface penddingTask{
     id: number;
+    img: string;
     name: string;
     endDate: Date;
 }

@@ -101,10 +101,10 @@ export async function returnTaskService(id: number, id_user: number) {
 
 
 export async function findAllPenddingTask(id_user: number): Promise<penddingTask[]> {
-  //let date = new Date();
+  let realDate = new Date().toISOString().split('T')[0]; //"2024-06-19"
   
   const [resp] = await conexion.query(
-    `select t.id, t.name, t.endDate from task t where t.endDate = "2024-06-19" and t.id_user = '${id_user}' and t.state = 0`
+    `select t.id, t.img, t.name, t.endDate from task t where t.endDate = '${realDate}' and t.id_user = '${id_user}' and t.state = 0`
   );
 
   return resp as penddingTask[] || [] as penddingTask[];

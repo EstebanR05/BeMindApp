@@ -18,6 +18,10 @@ const routes: Routes = [
     component: TaskManagerComponent,
   },
   {
+    path: 'view/:id',
+    component: TaskManagerComponent,
+  },
+  {
     path: 'doneTask',
     component: TaskDoneComponent
   }

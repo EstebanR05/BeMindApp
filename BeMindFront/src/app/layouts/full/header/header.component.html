@@ -15,18 +15,6 @@
 
   <span class="flex-1-auto"></span>
 
-  <!-- --------------------------------------------------------------- -->
-  <!-- profile Dropdown -->
-  <!-- --------------------------------------------------------------- -->
-  <!-- <a
-    mat-flat-button
-    color="primary"
-    href="https://www.wrappixel.com/templates/spike-angular-admin-template/?ref=33"
-    target="_blank"
-    class="d-flex justify-content-center"
-  >
-    Upgrade to Pro
-  </a> -->
   <button mat-icon-button [matMenuTriggerFor]="profilemenu" aria-label="Notifications" class="m-l-10">
     <img src="/assets/images/profile/user-1.jpg" class="rounded-circle object-cover" width="35" />
   </button>
@@ -64,11 +52,35 @@
               </div>
             </div>
             <div class="card-body bg-white">
-              <ul class="list-group" *ngFor="let list of this.penddingTask">
-                <li class="list-group-item">
-                  {{list.name + "-" + list.endDate}}
-                </li>
-              </ul>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr *ngFor="let list of this.penddingTask">
+                      <td> <img src="../../../../assets/images/task/{{list.img}}.png" alt="{{list.img}}" width="35">
+                      </td>
+                      <td>{{list.name}}</td>
+                      <td>
+                        <div class=" btn btn-sm btn-danger">
+                          {{list.endDate | date:'yyyy-MM-dd'}}
+                        </div>
+                      </td>
+                      <td>
+                        <div class="btn-group" role="group" aria-label="Acciones">
+                          <div class="btn-group" role="group" aria-label="Editar">
+                            <button type="button" class="btn btn-sm bg-white"
+                              (click)="this.route.navigate(['/Task/view/', list.id]); this.closeModalMethod();">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="text-primary bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
