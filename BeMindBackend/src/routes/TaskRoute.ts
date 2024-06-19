@@ -4,6 +4,7 @@ import {
   deleteTask,
   doingTask,
   getAllDoingTask,
+  getAllPenddingTask,
   getAllTask,
   getByIdTask,
   returnTask,
@@ -20,6 +21,7 @@ router
   .delete("/Task/:id", deleteTask)
   .post("/doingTask/:id", doingTask)
   .get("/getAllDoinTask", getAllDoingTask)
-  .post("/returnTask/:id", returnTask);
+  .post("/returnTask/:id", returnTask)
+  .get("/penddingTask", getAllPenddingTask);
 
 export default router;

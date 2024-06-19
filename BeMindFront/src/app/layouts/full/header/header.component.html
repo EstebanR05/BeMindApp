@@ -9,8 +9,8 @@
   <!-- Notification Dropdown -->
   <!-- --------------------------------------------------------------- -->
 
-  <button mat-icon-button aria-label="Notifications">
-    <i-tabler class="d-flex" name="bell" matBadge="9" matBadgeColor="primary"></i-tabler>
+  <button mat-icon-button aria-label="Notifications" (click)="this.openModal($event); this.getAllPenddingTask()">
+    <i-tabler class="d-flex" name="bell" matBadge="{{this.sizePenddingTask}}" matBadgeColor="primary"></i-tabler>
   </button>
 
   <span class="flex-1-auto"></span>
@@ -45,3 +45,34 @@
     </div>
   </mat-menu>
 </mat-toolbar>
+
+<!--modal reactive programming-->
+<ng-container *ngIf="modalDisplay$ | async as modalDisplay;">
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':modalDisplay}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <div class="card p-3">
+            <div class="card-header bg-white">
+              <div class="d-flex justify-content-between">
+                <strong class="aling-self-center">Notifications</strong>
+                <div class="text-end">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeModalMethod()">
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-white">
+              <ul class="list-group" *ngFor="let list of this.penddingTask">
+                <li class="list-group-item">
+                  {{list.name + "-" + list.endDate}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

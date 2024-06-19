@@ -1,5 +1,5 @@
 import { conexion } from "../conexion_bd";
-import { task } from "../interface/task.interface";
+import { penddingTask, task } from "../interface/task.interface";
 
 export async function getAllTaskService(id_user: number) {
   const [resp] = await conexion.query(
@@ -97,4 +97,15 @@ export async function returnTaskService(id: number, id_user: number) {
   }
 
   return getByIdTaskService(id, id_user);
+}
+
+
+export async function findAllPenddingTask(id_user: number): Promise<penddingTask[]> {
+  //let date = new Date();
+  
+  const [resp] = await conexion.query(
+    `select t.id, t.name, t.endDate from task t where t.endDate = "2024-06-19" and t.id_user = '${id_user}' and t.state = 0`
+  );
+
+  return resp as penddingTask[] || [] as penddingTask[];
 }

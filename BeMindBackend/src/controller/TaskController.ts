@@ -8,8 +8,9 @@ import {
   updateTaskService,
   getAllDoingTaskService,
   returnTaskService,
+  findAllPenddingTask,
 } from "../services/TaskService";
-import { task } from "../interface/task.interface";
+import { penddingTask, task } from "../interface/task.interface";
 import { user } from "../interface/user.interface";
 import { validatedToken } from "../security/jwt";
 
@@ -103,7 +104,17 @@ export async function returnTask(_req: Request, res: Response) {
     const id = parseInt(_req.params.id, 10);
 
     const result: task = await returnTaskService(id, token.id);
-    res.json(result|| {});
+    res.json(result || {});
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+}
+
+export async function getAllPenddingTask(_req: Request, res: Response) {
+  try {
+    const token: user = validatedToken(_req, res);
+    const tasks: penddingTask[] = await findAllPenddingTask(token.id);
+    res.json(tasks || []);
   } catch (error) {
     res.status(500).json({ message: error });
   }

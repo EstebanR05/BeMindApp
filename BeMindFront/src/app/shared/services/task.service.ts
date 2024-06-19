@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { task } from '../interface/task.interface';
+import { penddingTask, task } from '../interface/task.interface';
 import { BaseComponent } from '../core/base.component';
 
 @Injectable({
@@ -81,6 +81,15 @@ export class TaskService extends BaseComponent {
       `Bearer ` + this.token
     );
     return this.http.post<any>(url, null ,{headers}).toPromise();
+  }
+
+  public getAllPenddingTask(): Promise<any> {
+    const url: string = `${this.apiUrl}/penddingTask`;
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ` + this.token
+    );
+    return this.http.get<penddingTask>(url, { headers }).toPromise();
   }
 
 }

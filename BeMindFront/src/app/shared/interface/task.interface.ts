@@ -9,3 +9,9 @@ export interface task {
     Comentary: string;
     doingDate: Date;
 }
+
+export interface penddingTask{
+    id: number;
+    name: string;
+    endDate: Date;
+}
