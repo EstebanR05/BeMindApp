@@ -25,7 +25,8 @@ import {
 } from 'ng-apexcharts';
 import {BaseComponent} from "../../shared/core/base.component";
 import {DashboardService} from "../../shared/services/dashboard.service";
-import {RecentlyDone, TaskInTheWeek} from 'src/app/shared/interface/Dashboard.interface';
+import {AllByYearly, RecentlyDone, TaskInTheWeek} from 'src/app/shared/interface/Dashboard.interface';
+import {co} from "@fullcalendar/core/internal-common";
 
 export interface profitExpanceChart {
   series: ApexAxisChartSeries;
@@ -113,6 +114,8 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
   displayedColumns: string[] = ['profile', 'hrate', 'exclasses', 'status'];
   listTaskInWeek: TaskInTheWeek[] = [];
   stats: RecentlyDone[] = [];
+  private doing: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  private done: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   constructor(private dashboardService: DashboardService) {
     super();
@@ -128,12 +131,29 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
     this.getAllTaskInWeek();
 
     //binding
-    this.bindingAllByYearly();
+    this.bindingAllByYearly(this.doing, this.done);
   }
 
   private async getAllByYearly(): Promise<void> {
-    const response = await this.dashboardService.getAllYearly();
+    try {
+      const response = await this.dashboardService.getAllYearly();
+      const taskDoing: AllByYearly[] = response.filter((task: AllByYearly) => task.taskDoing !== 0);
+      const taskDone: AllByYearly[] = response.filter((task: AllByYearly) => task.taskDone !== 0);
+
+      taskDoing.forEach((task: AllByYearly) => {
+        this.doing[(task.month - 1)] = task.taskDoing;
+      });
+
+      taskDone.forEach((task: AllByYearly) => {
+        this.done[(task.month - 1)] = task.taskDone;
+      });
+
+      this.bindingAllByYearly(this.doing, this.done);
+    } catch (error) {
+      console.error("Error fetching yearly tasks:", error);
+    }
   }
+
 
   private async getAllTaskInWeek(): Promise<void> {
     const response = await this.dashboardService.getAllTaskInWeek();
@@ -154,17 +174,17 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
     this.stats = response;
   }
 
-  private bindingAllByYearly(): void {
+  private bindingAllByYearly(doing: number[], done: number[]): void {
     this.graficAllByYearly = {
       series: [
         {
-          name: 'Eanings this month',
-          data: [9, 5, 3, 7, 5, 10, 3],
+          name: 'Task Doing',
+          data: doing,
           color: '#0085db',
         },
         {
-          name: 'Expense this month',
-          data: [6, 3, 9, 5, 4, 6, 4],
+          name: 'Task Done',
+          data: done,
           color: '#fb977d',
         },
       ],
