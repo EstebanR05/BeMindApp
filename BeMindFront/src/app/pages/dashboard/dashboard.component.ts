@@ -6,91 +6,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {TablerIconsModule} from 'angular-tabler-icons';
-import {
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexLegend,
-  ApexStroke,
-  ApexTooltip,
-  ApexAxisChartSeries,
-  ApexXAxis,
-  ApexYAxis,
-  ApexGrid,
-  ApexPlotOptions,
-  ApexFill,
-  ApexMarkers,
-  ApexResponsive,
-  NgApexchartsModule,
-} from 'ng-apexcharts';
+import {ChartComponent, NgApexchartsModule,} from 'ng-apexcharts';
 import {BaseComponent} from "../../shared/core/base.component";
 import {DashboardService} from "../../shared/services/dashboard.service";
-import {AllByYearly, RecentlyDone, TaskInTheWeek} from 'src/app/shared/interface/Dashboard.interface';
-import {co} from "@fullcalendar/core/internal-common";
-
-export interface profitExpanceChart {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  yaxis: ApexYAxis;
-  xaxis: ApexXAxis;
-  fill: ApexFill;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  legend: ApexLegend;
-  grid: ApexGrid;
-  marker: ApexMarkers;
-}
-
-export interface productsData {
-  id: number;
-  imagePath: string;
-  uname: string;
-  position: string;
-  hourRate: number;
-  classes: number;
-  priority: string;
-}
-
-const ELEMENT_DATA: productsData[] = [
-  {
-    id: 1,
-    imagePath: 'assets/images/profile/user-1.jpg',
-    uname: 'Mark J. Freeman',
-    position: 'English',
-    hourRate: 150,
-    classes: 53,
-    priority: 'Available',
-  },
-  {
-    id: 2,
-    imagePath: 'assets/images/profile/user-2.jpg',
-    uname: 'Andrew McDownland',
-    position: 'Project Manager',
-    hourRate: 150,
-    classes: 68,
-    priority: 'In Class',
-  },
-  {
-    id: 3,
-    imagePath: 'assets/images/profile/user-3.jpg',
-    uname: 'Christopher Jamil',
-    position: 'Project Manager',
-    hourRate: 150,
-    classes: 94,
-    priority: 'Absent',
-  },
-  {
-    id: 4,
-    imagePath: 'assets/images/profile/user-4.jpg',
-    uname: 'Nirav Joshi',
-    position: 'Frontend Engineer',
-    hourRate: 150,
-    classes: 27,
-    priority: 'On Leave',
-  },
-];
+import {
+  AllByYearly,
+  AllByYearlyParamsChart,
+  RecentlyDone,
+  TaskInTheWeek
+} from 'src/app/shared/interface/Dashboard.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -110,7 +34,7 @@ const ELEMENT_DATA: productsData[] = [
 })
 export class AppDashboardComponent extends BaseComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
-  public graficAllByYearly!: Partial<profitExpanceChart> | any;
+  public graficAllByYearly!: Partial<AllByYearlyParamsChart> | any;
   displayedColumns: string[] = ['profile', 'hrate', 'exclasses', 'status'];
   listTaskInWeek: TaskInTheWeek[] = [];
   stats: RecentlyDone[] = [];

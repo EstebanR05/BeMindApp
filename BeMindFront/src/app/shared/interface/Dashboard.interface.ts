@@ -1,3 +1,13 @@
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexDataLabels,
+  ApexFill, ApexGrid, ApexLegend, ApexMarkers,
+  ApexPlotOptions, ApexStroke, ApexTooltip,
+  ApexXAxis,
+  ApexYAxis
+} from "ng-apexcharts";
+
 export interface AllByYearly {
   month: number;
   taskDoing: number;
@@ -16,4 +26,19 @@ export interface TaskInTheWeek {
   name: string;
   area: string;
   state: number;
+}
+
+export interface AllByYearlyParamsChart {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
+  legend: ApexLegend;
+  grid: ApexGrid;
+  marker: ApexMarkers;
 }
