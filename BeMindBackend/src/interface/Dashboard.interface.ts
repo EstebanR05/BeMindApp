@@ -10,10 +10,10 @@ export interface RecentlyDone {
     doingDate: Date;
 }
 
-export interface DoInTheWeek {
+export interface TaskInTheWeek {
+    id: number
     img: string;
     name: string;
     area: string;
-    Comentary: string;
-    endDate: Date;
+    state: number;
 }

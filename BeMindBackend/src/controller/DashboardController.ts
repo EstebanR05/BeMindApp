@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { findAllByYearly, findDoInTheWeek, findRecentlyDone } from "../services/DashboardService";
-import { AllByYearly, RecentlyDone, DoInTheWeek } from "../interface/Dashboard.interface";
+import { findAllByYearly, findTaskInTheWeek, findRecentlyDone } from "../services/DashboardService";
+import { AllByYearly, RecentlyDone, TaskInTheWeek } from "../interface/Dashboard.interface";
 
 export async function getAllYearly(_req: Request, res: Response) {
     try {
@@ -20,9 +20,9 @@ export async function getAllRecentlyDone(_req: Request, res: Response) {
     }
 }
 
-export async function getAllDoInTheWeek(_req: Request, res: Response) {
+export async function getAllTaskInTheWeek(_req: Request, res: Response) {
     try {
-        const result: DoInTheWeek[] = await findDoInTheWeek();
+        const result: TaskInTheWeek[] = await findTaskInTheWeek(1, "2024-06-16", "2024-06-23");
         res.send(result || []);
     } catch (error) {
         res.status(500).json({ message: error });

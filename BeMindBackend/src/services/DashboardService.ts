@@ -1,8 +1,8 @@
 import { conexion } from "../conexion_bd";
-import { AllByYearly, RecentlyDone, DoInTheWeek } from "../interface/Dashboard.interface";
+import { AllByYearly, RecentlyDone, TaskInTheWeek } from "../interface/Dashboard.interface";
 
 
-export async function findAllByYearly(idUser: number, startDate: string, endDate: string): Promise<any> {
+export async function findAllByYearly(idUser: number, startDate: string, endDate: string): Promise<AllByYearly[]> {
     const [resp]: any = await conexion.query(
         `SELECT 
             LPAD(MONTH(t.startDate), 1, '0') AS month,
@@ -18,7 +18,7 @@ export async function findAllByYearly(idUser: number, startDate: string, endDate
         ORDER BY LPAD(MONTH(t.startDate), 1, '0')`
     );
 
-    return resp as AllByYearly;
+    return resp as AllByYearly[] || [] as AllByYearly[];
 }
 
 export async function findRecentlyDone(): Promise<any> {
@@ -29,10 +29,13 @@ export async function findRecentlyDone(): Promise<any> {
     return resp as RecentlyDone[];
 }
 
-export async function findDoInTheWeek(): Promise<any> {
+export async function findTaskInTheWeek(idUser: number, startWeek: string, endWeek: string): Promise<TaskInTheWeek[]> {
     const [resp]: any = await conexion.query(
-        `SELECT * FROM task WHERE status = 0`
+        `select t.id, t.img,t.name,t.area, t.state 
+        from task as t 
+        where id_user = '${idUser}' 
+        and t.endDate between '${startWeek}' and '${endWeek}'`
     );
 
-    return resp as DoInTheWeek[];
+    return resp as TaskInTheWeek[] || [] as TaskInTheWeek[];
 }
