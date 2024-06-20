@@ -25,7 +25,7 @@ import {
 } from 'ng-apexcharts';
 import {BaseComponent} from "../../shared/core/base.component";
 import {DashboardService} from "../../shared/services/dashboard.service";
-import { RecentlyDone } from 'src/app/shared/interface/Dashboard.interface';
+import {RecentlyDone, TaskInTheWeek} from 'src/app/shared/interface/Dashboard.interface';
 
 export interface profitExpanceChart {
   series: ApexAxisChartSeries;
@@ -40,37 +40,6 @@ export interface profitExpanceChart {
   legend: ApexLegend;
   grid: ApexGrid;
   marker: ApexMarkers;
-}
-
-export interface trafficChart {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  legend: ApexLegend;
-  responsive: ApexResponsive;
-}
-
-export interface salesChart {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  legend: ApexLegend;
-  responsive: ApexResponsive;
-}
-
-interface stats {
-  id: number;
-  time: string;
-  color: string;
-  title?: string;
-  subtext?: string;
-  link?: string;
 }
 
 export interface productsData {
@@ -140,130 +109,38 @@ const ELEMENT_DATA: productsData[] = [
 })
 export class AppDashboardComponent extends BaseComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
-
   public graficAllByYearly!: Partial<profitExpanceChart> | any;
-  public trafficChart!: Partial<trafficChart> | any;
-  public salesChart!: Partial<salesChart> | any;
+  displayedColumns: string[] = ['profile', 'hrate', 'exclasses', 'status'];
+  listTaskInWeek: TaskInTheWeek[] = [];
+  stats: RecentlyDone[] = [];
 
   constructor(private dashboardService: DashboardService) {
     super();
-
-    // yearly breakup chart
-    this.trafficChart = {
-      series: [5368, 3500, 4106],
-      labels: ['5368', 'Refferal Traffic', 'Oragnic Traffic'],
-      chart: {
-        type: 'donut',
-        fontFamily: "'Plus Jakarta Sans', sans-serif;",
-        foreColor: '#adb0bb',
-        toolbar: {
-          show: false,
-        },
-        height: 160,
-      },
-      colors: ['#e7ecf0', '#fb977d', '#0085db'],
-      plotOptions: {
-        pie: {
-          donut: {
-            size: '80%',
-            background: 'none',
-            labels: {
-              show: true,
-              name: {
-                show: true,
-                fontSize: '12px',
-                color: undefined,
-                offsetY: 5,
-              },
-              value: {
-                show: false,
-                color: '#98aab4',
-              },
-            },
-          },
-        },
-      },
-      stroke: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      legend: {
-        show: false,
-      },
-      responsive: [
-        {
-          breakpoint: 991,
-          options: {
-            chart: {
-              width: 120,
-            },
-          },
-        },
-      ],
-      tooltip: {
-        enabled: false,
-      },
-    };
-
-    // mohtly earnings chart
-    this.salesChart = {
-      series: [
-        {
-          name: '',
-          color: '#8763da',
-          data: [25, 66, 20, 40, 12, 58, 20],
-        },
-      ],
-
-      chart: {
-        type: 'area',
-        fontFamily: "'Plus Jakarta Sans', sans-serif;",
-        foreColor: '#adb0bb',
-        toolbar: {
-          show: false,
-        },
-        height: 60,
-        sparkline: {
-          enabled: true,
-        },
-        group: 'sparklines',
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 2,
-      },
-      fill: {
-        colors: ['#8763da'],
-        type: 'solid',
-        opacity: 0.05,
-      },
-      markers: {
-        size: 0,
-      },
-      tooltip: {
-        theme: 'dark',
-        x: {
-          show: false,
-        },
-      },
-    };
   }
 
   ngOnInit(): void {
+    this.onReload();
+  }
+
+  public onReload(): void {
     this.getAllByYearly();
     this.getAllRecentlyDone();
+    this.getAllTaskInWeek();
+
     //binding
     this.bindingAllByYearly();
   }
 
-  displayedColumns: string[] = ['profile', 'hrate', 'exclasses', 'status'];
-  dataSource = ELEMENT_DATA;
+  private async getAllByYearly(): Promise<void> {
+    const response = await this.dashboardService.getAllYearly();
+  }
 
-  stats: RecentlyDone[] = [];
+  private async getAllTaskInWeek(): Promise<void> {
+    const response = await this.dashboardService.getAllTaskInWeek();
+    this.listTaskInWeek = response;
+  }
 
-  async getAllRecentlyDone(): Promise<void> {
+  private async getAllRecentlyDone(): Promise<void> {
     const response = await this.dashboardService.getAllRecentlyDone();
     response.forEach((element: RecentlyDone) => {
       const fecha = new Date(element.doingDate);
@@ -275,11 +152,6 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
       element.doingDate = hora;
     });
     this.stats = response;
-  }
-
-  async getAllByYearly(): Promise<void> {
-    const response = await this.dashboardService.getAllYearly();
-    console.log(response);
   }
 
   private bindingAllByYearly(): void {

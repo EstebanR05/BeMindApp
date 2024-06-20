@@ -1,4 +1,5 @@
 export interface AllByYearly {
+  month: number;
   taskDoing: number;
   taskDone: number;
 }
@@ -9,10 +10,10 @@ export interface RecentlyDone {
   doingDate: any;
 }
 
-export interface DoInTheWeek {
+export interface TaskInTheWeek {
+  id: number
   img: string;
   name: string;
   area: string;
-  Comentary: string;
-  endDate: Date;
+  state: number;
 }

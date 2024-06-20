@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {BaseComponent} from "../core/base.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AllByYearly, DoInTheWeek, RecentlyDone} from "../interface/Dashboard.interface";
+import {AllByYearly, TaskInTheWeek, RecentlyDone} from "../interface/Dashboard.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +30,13 @@ export class DashboardService extends BaseComponent {
     return this.http.get<RecentlyDone[]>(url, {headers}).toPromise();
   }
 
-  public getAllDoInTheWeek(): Promise<any> {
+  public getAllTaskInWeek(): Promise<any> {
     const url: string = `${this.apiUrl}/dashboard/getAllDoInTheWeek`;
     let headers: HttpHeaders = new HttpHeaders().set(
       'Authorization',
       `Bearer ` + this.token
     );
-    return this.http.get<DoInTheWeek[]>(url, {headers}).toPromise();
+    return this.http.get<TaskInTheWeek[]>(url, {headers}).toPromise();
   }
 
 
