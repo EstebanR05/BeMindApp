@@ -6,7 +6,7 @@ export interface AllByYearly {
 export interface RecentlyDone {
   name: string;
   area: string;
-  doingDate: Date;
+  doingDate: any;
 }
 
 export interface DoInTheWeek {

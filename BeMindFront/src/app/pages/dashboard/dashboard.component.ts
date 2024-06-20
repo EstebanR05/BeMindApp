@@ -25,6 +25,7 @@ import {
 } from 'ng-apexcharts';
 import {BaseComponent} from "../../shared/core/base.component";
 import {DashboardService} from "../../shared/services/dashboard.service";
+import { RecentlyDone } from 'src/app/shared/interface/Dashboard.interface';
 
 export interface profitExpanceChart {
   series: ApexAxisChartSeries;
@@ -252,7 +253,7 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllByYearly();
-    
+    this.getAllRecentlyDone();
     //binding
     this.bindingAllByYearly();
   }
@@ -260,47 +261,21 @@ export class AppDashboardComponent extends BaseComponent implements OnInit {
   displayedColumns: string[] = ['profile', 'hrate', 'exclasses', 'status'];
   dataSource = ELEMENT_DATA;
 
-  stats: stats[] = [
-    {
-      id: 1,
-      time: '09.30 am',
-      color: 'primary',
-      subtext: 'Payment received from John Doe of $385.90',
-    },
-    {
-      id: 2,
-      time: '10.30 am',
-      color: 'accent',
-      title: 'New sale recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 3,
-      time: '12.30 pm',
-      color: 'success',
-      subtext: 'Payment was made of $64.95 to Michael',
-    },
-    {
-      id: 4,
-      time: '12.30 pm',
-      color: 'warning',
-      title: 'New sale recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 5,
-      time: '12.30 pm',
-      color: 'error',
-      title: 'New arrival recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 6,
-      time: '12.30 pm',
-      color: 'success',
-      subtext: 'Payment Done',
-    },
-  ];
+  stats: RecentlyDone[] = [];
+
+  async getAllRecentlyDone(): Promise<void> {
+    const response = await this.dashboardService.getAllRecentlyDone();
+    response.forEach((element: RecentlyDone) => {
+      const fecha = new Date(element.doingDate);
+      var horas = fecha.getHours();
+      const amPm = horas >= 12 ? 'PM' : 'AM';
+      horas = horas % 12;
+      horas = horas ? horas : 12;
+      const hora = horas + ':' + fecha.getMinutes() + " " + amPm;
+      element.doingDate = hora;
+    });
+    this.stats = response;
+  }
 
   async getAllByYearly(): Promise<void> {
     const response = await this.dashboardService.getAllYearly();

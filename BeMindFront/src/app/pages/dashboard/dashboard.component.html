@@ -58,27 +58,22 @@
             *ngFor="let stat of stats"
           >
             <div class="time text-right mat-subtitle-1 f-s-14">
-              {{ stat.time }}
+              {{ stat.doingDate }}
             </div>
             <div class="point d-flex align-items-center">
-              <span class="timeline-badge border-{{ stat.color }} m-y-8"></span>
+              <span class="timeline-badge border-primary m-y-8"></span>
               <span class="timline-border d-block"></span>
             </div>
             <div class="desc">
-              <ng-template [ngIf]="stat.subtext">
-                <span class="mat-subtitle-1 f-s-14 lh-20">{{
-                  stat.subtext
+              <ng-template [ngIf]="stat.name">
+                <span class="mat-subtitle-1 f-s-14 lh-20 row">{{
+                  stat.name
                 }}</span>
               </ng-template>
-              <ng-template [ngIf]="stat.title">
-                <span class="mat-subtitle-1 f-s-14 lh-20 f-w-600 d-block">{{
-                  stat.title
+              <ng-template [ngIf]="stat.area">
+                <span class="mat-subtitle-1 f-s-14 l f-w-600 row">{{
+                  stat.area
                 }}</span>
-              </ng-template>
-              <ng-template [ngIf]="stat.link">
-                <a href="#" class="text-primary text-decoration-none mat-body-1"
-                  >#ML-3467</a
-                >
               </ng-template>
             </div>
           </div>

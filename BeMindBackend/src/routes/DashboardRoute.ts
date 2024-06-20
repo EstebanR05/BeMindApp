@@ -5,7 +5,7 @@ const route = Router();
 
 route
     .get('/getAllYearly', getAllYearly)
-    .get('/getAllRecentlyDone', getAllRecentlyDone)
+    .get('/getAllRecentlyDone/', getAllRecentlyDone)
     .get('/getAllDoInTheWeek', getAllDoInTheWeek);
 
 export default route;

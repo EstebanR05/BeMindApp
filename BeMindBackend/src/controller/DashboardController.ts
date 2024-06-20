@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { findAllByYearly, findDoInTheWeek, findRecentlyDone } from "../services/DashboardService";
 import { AllByYearly, RecentlyDone, DoInTheWeek } from "../interface/Dashboard.interface";
+import { validatedToken } from "../security/jwt";
+import { user } from "../interface/user.interface";
 
 export async function getAllYearly(_req: Request, res: Response) {
     try {
@@ -13,7 +15,8 @@ export async function getAllYearly(_req: Request, res: Response) {
 
 export async function getAllRecentlyDone(_req: Request, res: Response) {
     try {
-        const result: RecentlyDone = await findRecentlyDone();
+        const token: user = validatedToken(_req, res);
+        const result: RecentlyDone = await findRecentlyDone(token.id);
         res.send(result || {});
     } catch (error) {
         res.status(500).json({ message: error });

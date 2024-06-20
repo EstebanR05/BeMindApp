@@ -21,10 +21,9 @@ export async function findAllByYearly(idUser: number, startDate: string, endDate
     return resp as AllByYearly;
 }
 
-export async function findRecentlyDone(): Promise<any> {
+export async function findRecentlyDone(id_user: number): Promise<any> {
     const [resp]: any = await conexion.query(
-        `SELECT t.name, t.area, t.doingDate FROM task as t WHERE t.state = 1`
-    );
+        `SELECT t.id, t.name, t.area, t.doingDate FROM task as t WHERE t.state = 1 AND t.id_user = '${id_user}'` );
 
     return resp as RecentlyDone[];
 }
